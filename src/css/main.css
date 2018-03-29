@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.container {
+  height: 100vh;
+  background-color: black;
+  color: white;
+}
+/*# sourceMappingURL=main.css.map */

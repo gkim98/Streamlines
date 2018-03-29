@@ -1,7 +1,7 @@
 import React from 'react';
 
 const WritePage = () => (
-    <div>
+    <div className="container">
         This is the page where creative juices will flow
     </div>
 );
