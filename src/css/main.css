@@ -18,12 +18,11 @@ body {
 }
 
 .container__text-field {
-  font-size: 7rem;
+  font-size: 5rem;
   color: white;
   text-decoration: none;
   text-align: right;
   caret-color: blue;
-  pointer-events: none;
 }
 
 html, body {
@@ -59,5 +58,6 @@ html, body {
   height: 50%;
   background: linear-gradient(to left, transparent, black);
   transform: translateY(-50%);
+  pointer-events: none;
 }
 /*# sourceMappingURL=main.css.map */

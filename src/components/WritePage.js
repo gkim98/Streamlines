@@ -1,26 +1,50 @@
-import React from 'react';
-import $ from 'jquery';
+import React, { Component } from 'react';
 
-$(document).keydown(function(e) { 
-    if (e.keyCode == 8 || e.keyCode == 37 || e.keyCode == 39) e.preventDefault(); 
-});
+export default class WritePage extends Component {
+    constructor(props) {
+        super(props);
+        
+        
 
-$(document).click(function() { 
-    $(".container__text-field").focus();
-});
+        this.focus = this.focus.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
+        this.handleMouseDown = this.handleMouseDown.bind(this);
+    }
 
-
-
-export default class WritePage extends React.Component {
     componentDidMount() {
-        $(".container__text-field").focus();
+        this.focus();
+    }
+
+    focus() {
+        this.mainInput.focus();
+    }
+
+    handleKeyPress(event) {
+        //console.log(event.keyCode);
+
+        if(event.keyCode===8 || event.keyCode===37 || event.keyCode===38 || event.keyCode===39 || event.keyCode===40) {
+            event.preventDefault();
+        }
+
+        if(event.metaKey && event.keyCode===65) {
+            event.preventDefault();
+        }
+    }
+
+    handleMouseDown(event) {
+        event.preventDefault();
     }
 
     render() {
         return (
-            <div className="container">
-                <input type="text" className="container__text-field"/>
-                <div className="container__filter"/> 
+            <div className="container" onClick={this.focus} >
+                <input 
+                    ref={(input) => { this.mainInput = input; }}
+                    type="text" 
+                    className="container__text-field"
+                    onKeyDown={this.handleKeyPress} 
+                    onMouseDown={this.handleMouseDown} />
+                <div className="container__filter" /> 
             </div>
         );
     }
