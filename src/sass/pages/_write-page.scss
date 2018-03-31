@@ -2,8 +2,8 @@ html, body {margin: 0; height: 100%; overflow: hidden}
 
 .container {
     height: 100vh;
-    background-color: black;
-    color: white; 
+    background-color: $background-color;
+    
     background-size: cover;
     background-position: top;
     position: relative;
@@ -16,7 +16,17 @@ html, body {margin: 0; height: 100%; overflow: hidden}
 
       border: none;
       outline-width: 0;
-      background-color: black;
+      background-color: $background-color;
+    }
+
+    &__copy {
+      background-color: transparent;
+      
+    }
+
+    &__fade-up {
+      animation: fadeOutTop 0.5s;
+      animation-fill-mode: forwards;
     }
 
     &__filter {
@@ -26,11 +36,23 @@ html, body {margin: 0; height: 100%; overflow: hidden}
       width: 50%;
       height: 50%;
 
-      background: linear-gradient( to left, rgba($color: #000000, $alpha: 0),  rgba($color: #000000, $alpha: 1.0));
+      background: linear-gradient( to left, rgba($background-color, $alpha: 0),  rgba($background-color, $alpha: 1.0));
 
       transform: translateY(-50%);
 
       pointer-events: none;
     }
+
+    &__count {
+      position: absolute;
+      color: white;
+      font-size: 1rem;
+      bottom: -1%;
+      right: 1%;
+      //text-transform: uppercase;
+      font-weight: 200;
+    }
+
+    
 
 }
