@@ -73,7 +73,7 @@ body {
   box-sizing: border-box;
 }
 
-.container__text-field {
+.write-page__container__text-field {
   font-size: 5rem;
   color: white;
   text-decoration: none;
@@ -87,7 +87,7 @@ html, body {
   overflow: hidden;
 }
 
-.container {
+.write-page__container {
   height: 100vh;
   background-color: black;
   background-size: cover;
@@ -95,7 +95,7 @@ html, body {
   position: relative;
 }
 
-.container__text-field {
+.write-page__container__text-field {
   position: absolute;
   top: 50%;
   width: 50%;
@@ -106,17 +106,17 @@ html, body {
   background-color: black;
 }
 
-.container__copy {
+.write-page__container__copy {
   background-color: transparent;
   width: 500000rem;
 }
 
-.container__fade-up {
+.write-page__container__fade-up {
   animation: fadeOutTop 0.5s;
   animation-fill-mode: forwards;
 }
 
-.container__filter {
+.write-page__container__filter {
   z-index: 100;
   position: absolute;
   top: 50%;
@@ -127,12 +127,20 @@ html, body {
   pointer-events: none;
 }
 
-.container__count {
+.write-page__container__count {
   position: absolute;
   color: white;
   font-size: 1rem;
+  font-weight: 200;
+}
+
+.write-page__container__count-1 {
   bottom: -1%;
   right: 1%;
-  font-weight: 200;
+}
+
+.write-page__container__count-2 {
+  bottom: -1%;
+  left: 1%;
 }
 /*# sourceMappingURL=main.css.map */

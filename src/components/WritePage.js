@@ -4,14 +4,7 @@ export default class WritePage extends Component {
     constructor(props) {
         super(props);
         
-        this.state={myText:"", sentenceNumber: 1, paragraphNumer: 1, lastChar: '', fadeUp: ""};
-
-        this.focus = this.focus.bind(this);
-        this.handleKeyPress = this.handleKeyPress.bind(this);
-        this.checkCount = this.checkCount.bind(this);
-        this.handleMouseDown = this.handleMouseDown.bind(this);
-        this.handleOnChange = this.handleOnChange.bind(this);
-        this.handleAnimationEnd = this.handleAnimationEnd.bind(this);
+        this.state={myText:"\t", sentenceNumber: 1, paragraphNumer: 1, lastChar: '', fadeUp: "", wordCount: 0, characterCount: 0, checkedFlag: false};
     }
 
     componentDidMount() {
@@ -23,8 +16,10 @@ export default class WritePage extends Component {
     }
 
     handleKeyPress(event) {
-        // Disables backspace and arrow keys
-        if(event.keyCode===8 || event.keyCode===37 || event.keyCode===38 || event.keyCode===39 || event.keyCode===40) {
+        //console.log(event.keyCode);
+
+        // Disables backspace, arrow keys, home/end keys
+        if(event.keyCode===8 || (35<=event.keyCode && event.keyCode<=40)) {
             event.preventDefault();
             return;
         }
@@ -35,38 +30,22 @@ export default class WritePage extends Component {
             return;
         }
 
-        
-
-
+        this.setState({
+            sentenceNumber: (this.state.myText.match(/\w[.?!](\s|$)/g) || []).length + 1, 
+        });
     }
 
     checkCount(event) {
+        //console.log(this.state.myText);
+
         // Enter is pressed: add 1 to paragraphNumber
         if(event.keyCode===13) {
             this.copy.value = event.target.value;
-            this.setState({paragraphNumer: this.state.paragraphNumer + 1, sentenceNumber: 1, fadeUp: "container__fade-up"});
+            this.setState({paragraphNumer: this.state.paragraphNumer + 1, sentenceNumber: 1, fadeUp: "write-page__container__fade-up", myText: this.state.myText + '\n\t'});
             this.mainInput.value = "";
         }
-        // Last two characters are ". ": add 1 to sentenceNumber
-        if(event.target.value.substring(event.target.value.length - 2, event.target.value.length)===". ") {
-            this.setState({sentenceNumber: this.state.sentenceNumber + 1});
-        }
-
-        
-        
     }
 
-    handleMouseDown(event) {
-        event.preventDefault();
-    }
-
-    handleWheel(event) {
-        event.preventDefault();
-    }
-
-    handleOnChange(event) {
-        this.setState({myText: event.target.value});
-    }
 
     handleAnimationEnd(event) {
         this.setState({fadeUp: ""});
@@ -76,30 +55,39 @@ export default class WritePage extends Component {
 
     render() {
         return (
-            <div className="container" onClick={this.focus} >
+            <div className="write-page__container" onClick={this.focus.bind(this)} >
                 <input 
-                    className="container__text-field"
+                    className="write-page__container__text-field"
                     ref={(input) => { this.mainInput = input; }}
                     type="text" 
-                    onKeyDown={this.handleKeyPress} 
-                    onKeyUp={this.checkCount}
-                    onMouseDown={this.handleMouseDown} 
-                    onChange={ this.handleOnChange }
-                    onWheel={this.handleWheel} />
+                    onKeyDown={this.handleKeyPress.bind(this)} 
+                    onKeyUp={this.checkCount.bind(this)}
+                    onMouseDown={(event) => {event.preventDefault();}} 
+                    onChange={ (event) => {
+                            this.setState({
+                                myText: this.state.myText + event.target.value[event.target.value.length-1], 
+                                characterCount: this.state.characterCount + 1, 
+                                wordCount: this.state.myText.trim().split(/\s+/).length
+                            });
+                        } 
+                    }
+                    onWheel={(event) => {event.preventDefault();} } />
 
                 <input 
                     ref={(input) => { this.copy = input; }}
-                    className={"container__text-field container__copy " + this.state.fadeUp } 
-                    onAnimationEnd={this.handleAnimationEnd}
+                    className={"write-page__container__text-field write-page__container__copy " + this.state.fadeUp } 
+                    onAnimationEnd={this.handleAnimationEnd.bind(this)}
                 /> 
           
 
-                <div className="container__filter" /> 
+                <div className="write-page__container__filter" /> 
 
-                
+                <p className="write-page__container__count write-page__container__count-1"> 
+                    Sentence {this.state.sentenceNumber}: Paragraph {this.state.paragraphNumer} &nbsp;&nbsp;|&nbsp;&nbsp; Words: {this.state.wordCount}: Characters {this.state.characterCount}
+                </p>
 
-                <p className="container__count"> 
-                    Sentence {this.state.sentenceNumber}: Paragraph {this.state.paragraphNumer}
+                <p className="write-page__container__count write-page__container__count-2"> 
+                   
                 </p>
 
             </div>
