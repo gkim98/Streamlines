@@ -56,8 +56,13 @@ html, body {
   0% {
     opacity: 1;
   }
+  40% {
+    opacity: 1;
+    transform: translateY(-9rem);
+  }
   100% {
     opacity: 0;
+    transform: translateY(-9rem);
   }
 }
 
@@ -94,6 +99,7 @@ html, body {
   position: absolute;
   top: 50%;
   width: 50%;
+  right: 50%;
   transform: translateY(-50%);
   border: none;
   outline-width: 0;
@@ -102,6 +108,7 @@ html, body {
 
 .container__copy {
   background-color: transparent;
+  width: 500000rem;
 }
 
 .container__fade-up {

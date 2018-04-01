@@ -91,7 +91,8 @@ export default class WritePage extends Component {
                     ref={(input) => { this.copy = input; }}
                     className={"container__text-field container__copy " + this.state.fadeUp } 
                     onAnimationEnd={this.handleAnimationEnd}
-                />
+                /> 
+          
 
                 <div className="container__filter" /> 
 

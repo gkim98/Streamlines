@@ -12,6 +12,7 @@ html, body {margin: 0; height: 100%; overflow: hidden}
       position: absolute;
       top: 50%;
       width: 50%;
+      right: 50%;
       transform: translateY(-50%);
 
       border: none;
@@ -21,7 +22,7 @@ html, body {margin: 0; height: 100%; overflow: hidden}
 
     &__copy {
       background-color: transparent;
-      
+      width: 500000rem;
     }
 
     &__fade-up {
