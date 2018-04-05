@@ -12,8 +12,8 @@ html, body {margin: 0; height: 100%; overflow: hidden}
     &__text-field {
       position: absolute;
       top: 50%;
-      width: 50%;
-      right: 50%;
+      width: 100%;
+      right: 0%;
       transform: translateY(-50%);
 
       border: none;

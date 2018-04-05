@@ -98,8 +98,8 @@ html, body {
 .write-page__container__text-field {
   position: absolute;
   top: 50%;
-  width: 50%;
-  right: 50%;
+  width: 100%;
+  right: 0%;
   transform: translateY(-50%);
   border: none;
   outline-width: 0;
