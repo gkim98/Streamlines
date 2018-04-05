@@ -11,4 +11,6 @@ html, body {margin: 0; height: 100%; overflow: hidden}
 @import "base/animations";
 @import "base/typography";
 
+@import "components/text-flow";
+
 @import "pages/write-page";

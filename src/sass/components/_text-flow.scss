@@ -1,0 +1,81 @@
+.text-flow {
+    
+    &__text-field {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        right: 0%;
+        transform: translateY(-50%);
+  
+        border: none;
+        outline-width: 0;
+        background-color: $background-color;
+      }
+  
+      &__copy {
+        background-color: transparent;
+        width: 500000rem;
+      }
+  
+      &__fade-up {
+        animation: fadeOutTop 0.5s;
+        animation-fill-mode: forwards;
+      }
+  
+      &__filter {
+        z-index: 100;
+        position: absolute;
+        top: 50%;
+        width: 50%;
+        height: 50%;
+  
+        background: linear-gradient( to left, rgba($background-color, $alpha: 0),  rgba($background-color, $alpha: 1.0));
+  
+        transform: translateY(-50%);
+  
+        pointer-events: none;
+      }
+  
+      &__count {
+        position: absolute;
+        color: white;
+        font-size: 1rem;
+        
+        //text-transform: uppercase;
+        font-weight: 200;
+  
+        
+        bottom: -1%;
+        right: 1%;
+        
+        &__fadeIn {
+            //animation: fadeInLeft 0.5s timing-function delay iteration-count direction fill-mode;
+            animation: fadeInLeft 0.5s;
+            animation-fill-mode: forwards;
+        }
+
+        &__fadeOut {
+            animation: fadeOutRight 0.5s;
+            animation-fill-mode: forwards;
+        }
+
+        &__hidden {
+            visibility: hidden;
+        }
+
+        transition: color 0.5s, background-color 0.5s;
+
+        &:hover {
+            background-color: white;
+            color: black;
+        }
+
+       
+      
+      }
+}
+
+
+
+ 
+  

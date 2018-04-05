@@ -66,6 +66,32 @@ html, body {
   }
 }
 
+@keyframes fadeOutRight {
+  0% {
+    opacity: 1;
+    transform: translateX(0rem) translateY(0rem) rotate(0deg);
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(4rem) translateY(0.5rem) rotate(5deg);
+    visibility: hidden;
+  }
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-4rem) translateY(0.5rem) rotate(-5deg);
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0rem) translateY(0rem) rotate(0deg);
+    visibility: visible;
+  }
+}
+
 body {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
@@ -73,12 +99,73 @@ body {
   box-sizing: border-box;
 }
 
-.write-page__container__text-field {
-  font-size: 5rem;
+.text-flow__text-field {
+  font-size: 4rem;
   color: white;
   text-decoration: none;
   text-align: right;
   caret-color: blue;
+}
+
+.text-flow__text-field {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  right: 0%;
+  transform: translateY(-50%);
+  border: none;
+  outline-width: 0;
+  background-color: black;
+}
+
+.text-flow__copy {
+  background-color: transparent;
+  width: 500000rem;
+}
+
+.text-flow__fade-up {
+  animation: fadeOutTop 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.text-flow__filter {
+  z-index: 100;
+  position: absolute;
+  top: 50%;
+  width: 50%;
+  height: 50%;
+  background: linear-gradient(to left, transparent, black);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.text-flow__count {
+  position: absolute;
+  color: white;
+  font-size: 1rem;
+  font-weight: 200;
+  bottom: -1%;
+  right: 1%;
+  transition: color 0.5s, background-color 0.5s;
+}
+
+.text-flow__count__fadeIn {
+  animation: fadeInLeft 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.text-flow__count__fadeOut {
+  animation: fadeOutRight 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.text-flow__count__hidden {
+  visibility: hidden;
+}
+
+.text-flow__count:hover {
+  background-color: white;
+  color: black;
 }
 
 html, body {
@@ -87,7 +174,7 @@ html, body {
   overflow: hidden;
 }
 
-.write-page__container {
+.main-container {
   height: 100vh;
   background-color: black;
   background-size: cover;

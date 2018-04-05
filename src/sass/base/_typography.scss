@@ -4,15 +4,14 @@ body {
     line-height: 1.7;
     box-sizing: border-box;
 }
-.write-page {
-    &__container {
-        &__text-field {
-            font-size: 5rem;
-            color: $text-input-color;
-            text-decoration: none;
-            text-align: right;
-            caret-color: $caret-color;
-        }
 
+.text-flow {
+    &__text-field {
+        font-size: 4rem;
+        color: $text-input-color;
+        text-decoration: none;
+        text-align: right;
+        caret-color: $caret-color;
     }
 }
+        

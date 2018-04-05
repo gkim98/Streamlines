@@ -62,3 +62,31 @@
         transform: translateY(-9rem);
     }
 }
+
+@keyframes fadeOutRight {
+    0% {
+        opacity: 1;
+        transform: translateX(0rem) translateY(0rem) rotate(0deg);
+        visibility: visible;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(+4rem) translateY(0.5rem) rotate(5deg);
+        visibility: hidden;
+    }
+}
+
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-4rem) translateY(0.5rem) rotate(-5deg);
+        visibility: hidden;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0rem) translateY(0rem) rotate(0deg);
+        visibility: visible;
+    }
+}

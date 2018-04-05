@@ -1,26 +1,31 @@
 import React, { Component } from 'react';
-import TextFlow from './text_flow';
+import TextFlow from './TextFlow';
 
-function countWords(s){
-    s = s.replace(/(^\s*)|(\s*$)/gi,"");//exclude  start and end white-space
-    s = s.replace(/[ ]{2,}/gi," ");//2 or more space to 1
-    s = s.replace(/\n /,"\n"); // exclude newline with a start spacing
-    return s.split(' ').length; 
-}
+function countWords(str) {
+    return str.trim().split(/\s+/).length;
+  }
 
 
 export default class WritePage extends Component {
     constructor(props) {
         super(props);
         
-        this.state={myField:"\t", myText: "", sentenceNumber: 1, paragraphNumer: 1, wordCount: 0, characterCount: 0};
+        this.state={myField:"", 
+                    myText: "", 
+                    sentenceNumber: 1, 
+                    paragraphNumber: 1, 
+                    wordCount: 0, 
+                    characterCount: 0,
+                    count1ToggleClass: "",
+                    count2ToggleClass: "text-flow__count__hidden",
+                };
     }
 
     updateText(myField) {
         this.setState({
             myField,
-            wordCount: countWords(myField + " " + this.state.myText),
-            characterCount: myField.length + this.state.myText.length,
+            wordCount: countWords(myField  + this.state.myText),
+            characterCount: myField.length + this.state.myText.length - 2*(this.state.paragraphNumber - 1),
             sentenceNumber: (myField.match(/\w[.?!](\s|$)/g) || []).length + 1,
         });
     }
@@ -28,9 +33,9 @@ export default class WritePage extends Component {
     newParagraph() {
         this.setState({
             myText: this.state.myText + "\t" + this.state.myField + "\n",
-            wordCount: countWords(this.state.myField + " " + this.state.myText),
-            paragraphNumer: this.state.paragraphNumer + 1,
-            sentenceNumber: 1
+            paragraphNumber: this.state.paragraphNumber + 1,
+            sentenceNumber: 1,
+            wordCount: countWords(this.state.myField + " " + this.state.myText)
         });
     }
 
@@ -40,27 +45,43 @@ export default class WritePage extends Component {
         });
     }
 
-    onClick = () => {
+    refocus = () => {
         this.child.focus() 
         console.log(this.state.myText);
     }
 
+    onToggleCount(event) {
+        //console.log(event.target.id);
+
+        if(event.target.id === "count1") {
+            this.setState({
+                count1ToggleClass: "text-flow__count__fadeOut",
+                count2ToggleClass: "text-flow__count__fadeIn"
+            });
+        } else if(event.target.id === "count2") {
+            this.setState({
+                count1ToggleClass: "text-flow__count__fadeIn",
+                count2ToggleClass: "text-flow__count__fadeOut"
+            });
+        }
+    }
+
     render() {
         return (
-            <div className="write-page__container" onClick={this.onClick}>
-                <div className="write-page__container__filter">
+            <div className="main-container" onClick={this.refocus}>
+                <div className="text-flow__filter">
                     <TextFlow 
-                        onTextChange={ this.updateText.bind(this)}
+                        onTextChange={this.updateText.bind(this)}
                         onEnter={this.newParagraph.bind(this)}
                         onRef={ref => (this.child = ref)} />
                 </div> 
 
-                <p className="write-page__container__count write-page__container__count-1"> 
-                    Sentence {this.state.sentenceNumber}: Paragraph {this.state.paragraphNumer} &nbsp;&nbsp;|&nbsp;&nbsp; Words: {this.state.wordCount}: Characters {this.state.characterCount}
+                <p id="count1" className={"text-flow__count " + this.state.count1ToggleClass} onClick={this.onToggleCount.bind(this)} > 
+                    Sentence {this.state.sentenceNumber}: Paragraph {this.state.paragraphNumber}&#8594;
                 </p>
 
-                <p className="write-page__container__count write-page__container__count-2"> 
-                   
+                <p id="count2" className={"text-flow__count " + this.state.count2ToggleClass} onClick={this.onToggleCount.bind(this)} > 
+                    Words: {this.state.wordCount}: Characters {this.state.characterCount}&#8594;
                 </p>
 
             </div> 

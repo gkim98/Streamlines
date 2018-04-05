@@ -1,13 +1,18 @@
 html, body {margin: 0; height: 100%; overflow: hidden}
 
+.main-container {
+  height: 100vh;
+  background-color: $background-color;
+  
+  background-size: cover;
+  background-position: top;
+  position: relative;
+
+}
+
 .write-page {
   &__container {
-    height: 100vh;
-    background-color: $background-color;
     
-    background-size: cover;
-    background-position: top;
-    position: relative;
   
     &__text-field {
       position: absolute;
