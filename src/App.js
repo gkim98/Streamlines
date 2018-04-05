@@ -8,9 +8,6 @@ import { startAddWriting } from './actions/writings';
 import { firebase } from './firebase/firebase';
 
 const store = configureStore();
-store.dispatch(startAddWriting({text: "hello", createdAt: "no"}))
-
-console.log(store.getState());
 
 class App extends Component {
   render() {
@@ -21,5 +18,7 @@ class App extends Component {
     );
   }
 }
+
+//firebase.database().ref('writings').remove();
 
 export default App;
