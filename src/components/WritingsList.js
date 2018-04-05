@@ -16,18 +16,22 @@ class WritingsList extends React.Component {
     }
 
     addWriting() {
-        this.props.dispatch(startAddWriting(
-            document.getElementById('text').value
-        ))
+        const text = document.getElementById('writing').value;
+
+        const writing = {
+            text
+        }
+
+        this.props.dispatch(startAddWriting(writing))
     }
 
     render() {
         return (
             <div>
-                <input type='text' id='text'></input>
+                <input type='text' id='writing'></input>
                 <button onClick={this.addWriting}>Add Writing</button>
                 {this.props.writings.map((writing) => {
-                    return <p>{writing.text}</p>
+                    return <p key={writing.id}>{writing.text}</p>
                 })}
             </div>
         )
