@@ -1,16 +1,31 @@
+.filter {
+    position: absolute;
+    top: 50%;
+    width: 50%;
+    height: 50%;
+    background: linear-gradient( to left, rgba($background-color, $alpha: 0),  rgba($background-color, $alpha: 1.0));
+    transform: translateY(-50%);
+    pointer-events: none;
+    //background-color: blue;
+}
+
 .text-flow {
     
-    &__text-field {
+
+    &__text-field { 
+        
+
         position: absolute;
         top: 50%;
-        width: 100%;
-        right: 0%;
+        right: 50%;
         transform: translateY(-50%);
-  
+        
+        width: 100%;
+
         border: none;
         outline-width: 0;
         background-color: $background-color;
-      }
+    }
   
       &__copy {
         background-color: transparent;
@@ -22,19 +37,7 @@
         animation-fill-mode: forwards;
       }
   
-      &__filter {
-        z-index: 100;
-        position: absolute;
-        top: 50%;
-        width: 50%;
-        height: 50%;
-  
-        background: linear-gradient( to left, rgba($background-color, $alpha: 0),  rgba($background-color, $alpha: 1.0));
-  
-        transform: translateY(-50%);
-  
-        pointer-events: none;
-      }
+      
   
       &__count {
         position: absolute;

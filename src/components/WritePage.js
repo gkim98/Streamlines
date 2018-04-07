@@ -47,7 +47,6 @@ export default class WritePage extends Component {
 
     refocus = () => {
         this.child.focus() 
-        console.log(this.state.myText);
     }
 
     onToggleCount(event) {
@@ -69,12 +68,12 @@ export default class WritePage extends Component {
     render() {
         return (
             <div className="main-container" onClick={this.refocus}>
-                <div className="text-flow__filter">
-                    <TextFlow 
-                        onTextChange={this.updateText.bind(this)}
-                        onEnter={this.newParagraph.bind(this)}
-                        onRef={ref => (this.child = ref)} />
-                </div> 
+                
+                <TextFlow 
+                    onTextChange={this.updateText.bind(this)}
+                    onEnter={this.newParagraph.bind(this)}
+                    onRef={ref => (this.child = ref)} />
+                <div className="filter"></div> 
 
                 <p id="count1" className={"text-flow__count " + this.state.count1ToggleClass} onClick={this.onToggleCount.bind(this)} > 
                     Sentence {this.state.sentenceNumber}: Paragraph {this.state.paragraphNumber}&#8594;

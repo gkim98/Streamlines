@@ -4,7 +4,10 @@ export default class TextFlow extends React.Component {
     constructor(props) {
         super(props);
         
-        this.state={fadeUp: ""};
+        this.state={
+            fadeUpClass: "",
+            userInput: true,
+        };
     }
 
     componentDidMount() {
@@ -23,15 +26,11 @@ export default class TextFlow extends React.Component {
     handleKeyPress(event) {
         //console.log(event.keyCode);
 
-        // Enter is pressed: add 1 to paragraphNumber
-        if(event.keyCode===13) {
-            this.copy.value = event.target.value;
-            this.setState({fadeUp: "text-flow__fade-up"});
-            this.props.onEnter();
-            this.mainInput.value = "";
+        if(this.state.userInput===false && event.metaKey===false) {
+            event.preventDefault();
+            return;
         }
 
-        
         // Disables backspace, arrow keys, home/end keys
         if(event.keyCode===8 || (35<=event.keyCode && event.keyCode<=40)) {
             event.preventDefault();
@@ -43,19 +42,28 @@ export default class TextFlow extends React.Component {
             event.preventDefault();
             return;
         }
+            
+
+        // Enter is pressed: add 1 to paragraphNumber
+        if(event.keyCode===13) {
+            this.copy.value = event.target.value;
+            this.setState({fadeUpClass: "text-flow__fade-up"});
+            if(this.props.onEnter)
+                this.props.onEnter();
+            this.mainInput.value = "";
+        }
     }
 
     checkCount(event) {
-        this.props.onTextChange( event.target.value );     
+        if(this.props.onTextChange)
+            this.props.onTextChange( event.target.value );     
     }
 
 
     handleAnimationEnd(event) {
-        this.setState({fadeUp: ""});
+        this.setState({fadeUpClass: ""});
         this.copy.value = "";
     }
-
-
 
     // animate is used in the home page. Iterates through string and appends to textField
     animate(message, clear) {
@@ -65,17 +73,20 @@ export default class TextFlow extends React.Component {
         if(clear===true) {
             setTimeout(function() {
                 this.copy.value = message;
-                this.setState({fadeUp: "text-flow__fade-up"});
+                this.setState({fadeUpClass: "text-flow__fade-up"});
                 this.mainInput.value = "";
-            }.bind(this), 75*message.length + 1000);
+            }.bind(this), 50*message.length + 1000);
         }
+    }
+
+    userInput(userInput) {
+        this.setState({userInput});
     }
 
     appendMessage(char, index) {
         setTimeout(function() {
             this.mainInput.value += char;
-            this.focus();
-        }.bind(this), 75*index);
+        }.bind(this), 50*index);
     }
 
 
@@ -84,6 +95,7 @@ export default class TextFlow extends React.Component {
         return (
             <div>
                 <input 
+                    spellCheck="false"
                     className="text-flow__text-field"
                     ref={(input) => { this.mainInput = input; }}
                     type="text" 
@@ -95,7 +107,7 @@ export default class TextFlow extends React.Component {
             
                 <input 
                     ref={(input) => { this.copy = input; }}
-                    className={"text-flow__text-field text-flow__copy " + this.state.fadeUp } 
+                    className={"text-flow__text-field text-flow__copy " + this.state.fadeUpClass } 
                     onAnimationEnd={this.handleAnimationEnd.bind(this)}
                 /> 
             </div>
