@@ -111,17 +111,19 @@ body {
   padding: 10px 70px;
   height: 60%;
   font-family: "Roboto", sans-serif;
-  font-size: 12px;
+  font-size: 15px;
   outline: none;
-  opacity: 0;
+  transition: transform 0.2s;
   margin-right: 5px;
   margin-top: 20px;
 }
 
+.button:hover {
+  transform: translateY(5px);
+}
+
 .button-container {
   position: relative;
-  text-align: right;
-  display: flex;
   float: right;
 }
 
@@ -130,22 +132,42 @@ body {
   color: white;
   border: 1px solid white;
   /* Green */
-}
-
-.button-1-fadeIn {
   animation: moveInLeft 1s;
   animation-delay: 0.2s;
-  animation-fill-mode: forwards;
+  animation-fill-mode: backwards;
 }
 
 .button-2 {
-  opacity: 0;
   background-color: white;
+  animation: moveInLeft 1s;
+  animation-fill-mode: backwards;
+  margin-right: 10px;
 }
 
-.button-2-fadeIn {
+.button-info {
+  text-decoration: none;
+  border-radius: 0;
+  padding: 10px 40px;
+  height: 60%;
+  background-color: transparent;
+  font-size: 15px;
+  border: 0;
+  outline: none;
+  border-bottom: 2px solid white;
+  margin-right: 10px;
+  color: white;
   animation: moveInLeft 1s;
-  animation-fill-mode: forwards;
+  animation-fill-mode: backwards;
+  animation-delay: 0.4s;
+  transition: border-bottom 0.2s, transform 0.2s;
+}
+
+.button-info:hover {
+  border-bottom: 2px solid blue;
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 .filter {
@@ -183,8 +205,10 @@ body {
   position: absolute;
   color: white;
   font-size: 1rem;
+  padding: 8px;
+  border-radius: 10px;
   font-weight: 200;
-  bottom: -1%;
+  bottom: 0%;
   right: 1%;
   transition: color 0.5s, background-color 0.5s;
 }

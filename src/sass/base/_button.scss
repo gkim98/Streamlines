@@ -5,16 +5,18 @@
     height: 60%;
 
     font-family: "Roboto", sans-serif;
-    font-size: 12px;
+    font-size: 15px;
     
     outline: none;
 
-    opacity: 0;
+    transition: transform 0.2s;
+    &:hover {
+        transform: translateY(5px);
+    }
+
 
     &-container {
         position: relative;
-        text-align: right;
-        display: flex;
         float: right;
     }
 
@@ -25,25 +27,46 @@
         background-color: transparent;
         color: white;
         border: 1px solid white; /* Green */
-
-        &-fadeIn {
-            animation: moveInLeft 1s;
-            animation-delay: 0.2s;
-            animation-fill-mode: forwards;
-        }
-    }
-
-    &-2 {
-        opacity: 0;
-        background-color: white;
-        //margin-left: 10px;
-
-        &-fadeIn {
-            animation: moveInLeft 1s;
-            
-            animation-fill-mode: forwards;
-        }
+        animation: moveInLeft 1s;
+        animation-delay: 0.2s;
+        animation-fill-mode: backwards;
         
     }
 
+    &-2 {
+        background-color: white;
+        animation: moveInLeft 1s;
+        animation-fill-mode: backwards;
+        margin-right: 10px;
+    }
+
+    &-info {
+        text-decoration: none;
+        border-radius: 0;
+        padding: 10px 40px;
+        height: 60%;
+        background-color: transparent;
+        font-size: 15px;
+        border: 0;
+        outline: none;
+        border-bottom: 2px solid white;
+
+        margin-right: 10px;
+
+        color: white;
+
+        animation: moveInLeft 1s;
+        animation-fill-mode: backwards;
+        animation-delay: 0.4s;
+
+        transition: border-bottom 0.2s, transform 0.2s;
+        &:hover {
+            border-bottom: 2px solid $caret-color;
+        }
+    }
+
+}
+
+.hidden {
+    visibility: hidden;
 }

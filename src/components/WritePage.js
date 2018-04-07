@@ -76,11 +76,11 @@ export default class WritePage extends Component {
                 <div className="filter"></div> 
 
                 <p id="count1" className={"text-flow__count " + this.state.count1ToggleClass} onClick={this.onToggleCount.bind(this)} > 
-                    Sentence {this.state.sentenceNumber}: Paragraph {this.state.paragraphNumber}&#8594;
+                    Sentence {this.state.sentenceNumber}: Paragraph {this.state.paragraphNumber}&nbsp; &#8594;
                 </p>
 
                 <p id="count2" className={"text-flow__count " + this.state.count2ToggleClass} onClick={this.onToggleCount.bind(this)} > 
-                    Words: {this.state.wordCount}: Characters {this.state.characterCount}&#8594;
+                    Words: {this.state.wordCount}: Characters {this.state.characterCount}&nbsp; &#8594;
                 </p>
 
             </div> 

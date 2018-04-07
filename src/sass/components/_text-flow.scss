@@ -10,8 +10,6 @@
 }
 
 .text-flow {
-    
-
     &__text-field { 
         
 
@@ -43,12 +41,15 @@
         position: absolute;
         color: white;
         font-size: 1rem;
+        padding: 8px;
+        border-radius: 10px;
         
+
         //text-transform: uppercase;
         font-weight: 200;
   
         
-        bottom: -1%;
+        bottom: 0%;
         right: 1%;
         
         &__fadeIn {
