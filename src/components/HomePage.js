@@ -1,7 +1,9 @@
 import React from 'react';
 import TextFlow from './TextFlow';
+import { connect } from 'react-redux';
+import { startLogin } from '../actions/auth';
 
-export default class HomePage extends React.Component {
+class HomePage extends React.Component {
     constructor(props) {
         super(props);
 
@@ -74,16 +76,18 @@ export default class HomePage extends React.Component {
                     <div className={"title " + this.state.titleFadeIn}> Streamlines </div>
                     <div className={"title-sub " + this.state.titleFadeIn}> No mistakes in creativity </div>
                     <div className="button-container">
-                        <button className={"button button-1 " + this.state.button1fadeIn}> Log In </button>
+                        <button onClick={this.props.startLogin} className={"button button-1 " + this.state.button1fadeIn}> Log In </button>
                         <button className={"button button-2 " + this.state.button2fadeIn}> Sign Up </button>
                     </div>
                 </div>
             </div> 
         );
     }
-        
-
-
-    
 }
 
+// connect auth action to the component
+const mapDispatchToProps = (dispatch) => ({
+    startLogin: () => dispatch(startLogin())
+});
+
+export default connect(undefined, mapDispatchToProps)(HomePage);

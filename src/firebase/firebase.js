@@ -4,4 +4,6 @@ import { config } from './firebaseConfig';
 firebase.initializeApp(config);
 
 const database = firebase.database();
-export { firebase, database as default};
+// need to set up a provider for authentification
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+export { firebase, googleAuthProvider, database as default};

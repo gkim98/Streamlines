@@ -21,4 +21,13 @@ class App extends Component {
 
 //firebase.database().ref('writings').remove();
 
+// test if auth is working
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    console.log('log in');
+  } else {
+    console.log('log out');
+  }
+});
+
 export default App;
