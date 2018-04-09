@@ -187,13 +187,27 @@ class HomePage extends React.Component {
                     
                 </div> 
                 <div className="info-container">
-                    <h1> Streamlines is a text editor that lets your creativity roam free. </h1>
-                    <h2> No Mistakes</h2>
-                    <p> Backspaces are disabled, except for typos, so just keep typing everything on your mind. We believe that limiting backspaces in first drafts or journals will let the writer keep their focus on their stream of thoughts rather than structure or syntax.</p>
-                    <h2> No Looking Back</h2>
-                    <p> As you type, the text fades behind you. This means you won't have distracting text to </p>
-                    <h2> Export to Google Drive</h2>
-
+                    <div className="info-title">
+                        <h1> Streamlines is a text editor that lets your creativity roam free. </h1>
+                    </div>
+                    <div className="info-block-flex">
+                        <div className="info-block">
+                            <span class="pe-7s-like2"></span>
+                            <h2> No Mistakes</h2>
+                            <p> Backspaces are disabled, except for typos, so just keep typing everything on your mind. We believe that limiting backspaces in first drafts or journals will let the writer keep their focus on their stream of thoughts rather than structure or syntax.</p>
+                        </div>
+                        <div className="info-block">
+                            <span class="pe-7s-next"></span>
+                            <h2> No Looking Back</h2>
+                            <p> As you type, the text fades behind you. This means you won't have any distractions as you write. Concentrating only on the current context will let you record all of your thoughts.</p>
+                        </div>
+                        <div className="info-block">
+                            <span class="pe-7s-download"></span>
+                            <h2> Export to Google Drive</h2>
+                            <p> When you're done, export your document to Google Drive, or just copy and paste it all to your favorite text editor. If you are logged in, Streamlines will save your files for you as well, for viewing or exporting later.</p>
+                        </div>
+                    </div>
+                    <h3> Ready to get started? Press Enter to create your first Streamline! </h3>
                 </div>
                 
                
