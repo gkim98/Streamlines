@@ -62,17 +62,13 @@
         transform: translateY(2rem);
     }
 
-    80% {
-        transform: translateY(-0.5rem)
-    }
-
     100% {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-@keyframes fadeOutTop {
+@keyframes nextLine {
     0% {
         opacity: 1;
         //transform: translateY(0rem);
@@ -116,3 +112,78 @@
         visibility: visible;
     }
 }
+
+@keyframes fadeOutTop {
+    0% {
+        opacity: 1;
+        transform: translateY(0rem);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-3rem);
+    }
+}
+
+
+@keyframes fadeOutBottom {
+    0% {
+        opacity: 1;
+        transform: translateY(0rem);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(3rem);
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.fadeIn-delay {
+    &0 {
+        animation: moveInLeft 1s;
+        animation-fill-mode: backwards;
+    }
+    
+    &1 {
+        animation: moveInLeft 1s;
+        animation-fill-mode: backwards;
+        animation-delay: 0.2s;
+    }
+
+    &2 {
+        animation: moveInLeft 1s;
+        animation-fill-mode: backwards;
+        animation-delay: 0.4s;
+    }
+}
+
+.fadeInBottom {
+    animation: moveInBottom 1s;
+    animation-fill-mode: backwards;
+}
+
+.fadeOutTop {
+    animation: fadeOutTop 1s;
+    animation-fill-mode: backwards;
+}
+
+.fadeOutBottom {
+    animation: fadeOutBottom 1s;
+    animation-fill-mode: backwards;
+}
+
+.fadeOut {
+    animation: fadeOutBottom 1s;
+    animation-fill-mode: backwards;
+}
+

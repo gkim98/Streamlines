@@ -27,16 +27,14 @@
         background-color: transparent;
         color: white;
         border: 1px solid white; /* Green */
-        animation: moveInLeft 1s;
-        animation-delay: 0.2s;
-        animation-fill-mode: backwards;
+        
         
     }
 
     &-2 {
         background-color: white;
-        animation: moveInLeft 1s;
-        animation-fill-mode: backwards;
+        // animation: moveInLeft 1s;
+        // animation-fill-mode: backwards;
         margin-right: 10px;
     }
 
@@ -55,9 +53,9 @@
 
         color: white;
 
-        animation: moveInLeft 1s;
-        animation-fill-mode: backwards;
-        animation-delay: 0.4s;
+        // animation: moveInLeft 1s;
+        // animation-fill-mode: backwards;
+        // animation-delay: 0.4s;
 
         transition: border-bottom 0.2s, transform 0.2s;
         &:hover {
@@ -69,4 +67,24 @@
 
 .hidden {
     visibility: hidden;
+}
+
+.fadeIn-delay {
+    &0 {
+        animation: moveInLeft 1s;
+        animation-fill-mode: backwards;
+    }
+    
+    &1 {
+        animation: moveInLeft 1s;
+        animation-fill-mode: backwards;
+        animation-delay: 0.2s;
+    }
+
+    &2 {
+        animation: moveInLeft 1s;
+        animation-fill-mode: backwards;
+        animation-delay: 0.4s;
+    }
+
 }

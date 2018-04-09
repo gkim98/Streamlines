@@ -3,10 +3,10 @@ import TextFlow from './TextFlow';
 import { connect } from 'react-redux';
 import { startLogin } from '../actions/auth';
 import { withRouter } from "react-router-dom";
-import Waypoint from 'react-waypoint';
 
-var done = false;
+var scrollY = 0;
 
+// Used to reposition window scroll
 function scrollTo(element, to, duration) {
     if (duration < 0) return;
     var difference = to - element.scrollTop;
@@ -19,21 +19,17 @@ function scrollTo(element, to, duration) {
     }, 10);
 }
 
-var keys = {37: 1, 38: 1, 39: 1, 40: 1};
-
+// Used in disabling scrolling
 function preventDefault(e) {
-  
-
-   
-
-  e = e || window.event;
-  if (e.preventDefault)
-      e.preventDefault();
-  e.returnValue = false;  
-
-
+    e = e || window.event;
+    if (e.preventDefault)
+        e.preventDefault();
+    e.returnValue = false;  
 }
 
+// Disables scrolling from keyboard
+// Disables following keyCodes:
+var keys = {37: 1, 38: 1, 39: 1, 40: 1};
 function preventDefaultForScrollKeys(e) {
     if (keys[e.keyCode]) {
         preventDefault(e);
@@ -41,6 +37,7 @@ function preventDefaultForScrollKeys(e) {
     }
 }
 
+// Disables scrolling, used in welcome animation
 function disableScroll() {
   if (window.addEventListener) // older FF
       window.addEventListener('DOMMouseScroll', preventDefault, false);
@@ -50,6 +47,7 @@ function disableScroll() {
   document.onkeydown  = preventDefaultForScrollKeys;
 }
 
+// Reenables scrolling, used after welcome animation
 function enableScroll() {
     if (window.removeEventListener)
         window.removeEventListener('DOMMouseScroll', preventDefault, false);
@@ -64,33 +62,60 @@ class HomePage extends React.Component {
         super(props);
 
         this.state = {
-            button1fadeIn: "hidden", 
-            button2fadeIn:"hidden",
             titleFadeIn: "hidden",
-            historyFadeIn: "hidden",
             learnFadeIn: "hidden",
-            arrowFadeIn: "hidden"
+            arrowFadeIn: "hidden",
+            fadeIn1: "hidden",
+            fadeIn2: "hidden",
+            fadeIn3: "hidden",
+            tagLine: "hidden",
+            infoBlock: "hidden",
+            ready: "hidden"
         };
     }
 
+    // Various scroll measurements, binded by scroll listener in componentWillMount
     handleScroll() {
         var winHeight = window.innerHeight;
-     
-        // Annoying to compute doc height due to browser inconsistency
         var body = document.body;
         var html = document.documentElement;
         var docHeight = Math.max( body.scrollHeight, body.offsetHeight, 
                         html.clientHeight, html.scrollHeight, html.offsetHeight );
      
-        var value = document.documentElement.scrollTop;
+        scrollY = document.documentElement.scrollTop;
         
-        if(value > 200) {
+        if(scrollY > 200) {
             this.setState({
-                titleFadeIn: "title-fadeIn"
+                titleFadeIn: "fadeIn-delay0"
             });
         }
 
-        console.log(value);
+        var percent = scrollY / docHeight * 100;
+        if(percent >=15) {
+            this.setState({
+                tagLine: "fadeInBottom"
+            });
+        }
+
+        if(percent >= 25) {
+            this.setState({
+                infoBlock: "fadeInBottom"
+            });
+        }
+
+        if(percent>=40) {
+            setTimeout(function() {
+                this.setState({
+                    ready: "fadeInBottom"
+                });
+            }.bind(this), 2000);
+        }
+
+        // console.log("Window height: " + winHeight);
+        // console.log("Doc height: " + docHeight);
+        // console.log("Scroll: " + scrollY);
+        // console.log("%: " + scrollY / docHeight * 100);
+
      }
 
 
@@ -98,11 +123,13 @@ class HomePage extends React.Component {
         this.child.focus() 
     }
 
+    componentWillMount() {
+        disableScroll();
+    }
+
+    // Animate welcome message, fade in title, buttons, info
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll.bind(this));
-
-        
-        disableScroll();
 
         var msg1 = "Welcome to Streamlines";
         var msg2 = "Press Enter to begin";
@@ -120,12 +147,11 @@ class HomePage extends React.Component {
         
         setTimeout(function() {
             this.setState({
-                button1fadeIn: "button button-1", 
-                button2fadeIn: "button button-2",
-                titleFadeIn: "",
-                historyFadeIn: "button button-info",
                 learnFadeIn: "learn",
-                arrowFadeIn: "stretch"
+                arrowFadeIn: "stretch",
+                fadeIn1: "fadeIn-delay0",
+                fadeIn2: "fadeIn-delay1",
+                fadeIn3: "fadeIn-delay2"
             });
             
             enableScroll();
@@ -135,24 +161,44 @@ class HomePage extends React.Component {
         
     }
 
+    // New streamline is created (when enter is pressed)
     newSession() {
-        this.setState({
-            button1fadeIn: "hidden", 
-            button2fadeIn: "hidden",
-            titleFadeIn: "hidden",
-            historyFadeIn: "hidden"
-        });
+        if(scrollY !==0) {
+            scrollTo(document.documentElement, 0, 50);
 
-        setTimeout(function() {
-            // TODO: Implement history
-            this.props.history.push('/write')
-        }.bind(this), 500);
-
+            setTimeout(function() {
+                this.setState({
+                    titleFadeIn: "hidden",
+                    fadeIn1: "fadeOutTop",
+                    fadeIn2: "fadeOutTop",
+                    fadeIn3: "fadeOutTop",
+                    learnFadeIn: "hidden",
+                    arrowFadeIn: "hidden"
+                });
         
-    }
+                setTimeout(function() {
+                    this.props.history.push('/write')
+                }.bind(this), 500);
+            }.bind(this), 50);
 
- 
-    
+        } else {
+
+            this.setState({
+                titleFadeIn: "hidden",
+                fadeIn1: "fadeOutTop",
+                fadeIn2: "fadeOutTop",
+                fadeIn3: "fadeOutTop",
+                learnFadeIn: "hidden",
+                arrowFadeIn: "hidden"
+            });
+
+            setTimeout(function() {
+                this.props.history.push('/write')
+            }.bind(this), 500);
+        }
+
+
+    }
 
     render () {
         return (
@@ -162,9 +208,9 @@ class HomePage extends React.Component {
                         <div className={"title " + this.state.titleFadeIn}> Streamlines </div>
                         <div className={"title-sub " + this.state.titleFadeIn}> No mistakes in creativity </div>
                         <div className="button-container">
-                            <button className={this.state.historyFadeIn}> History </button>
-                            <button onClick={this.props.startLogin} className={this.state.button1fadeIn}> Log In </button>
-                            <button className={this.state.button2fadeIn}> Sign Up </button>
+                            <button className={"button button-info " + this.state.fadeIn3}> History </button>
+                            <button className={"button button-1 " + this.state.fadeIn2} onClick={this.props.startLogin} > Log In </button>
+                            <button className={"button button-2 " + this.state.fadeIn1}> Sign Up </button>
                         </div>
                     </div>
 
@@ -177,7 +223,7 @@ class HomePage extends React.Component {
                     <div className="filter" /> 
 
                     <div className={this.state.learnFadeIn}>
-                        Scroll to learn more
+                        What is Streamlines? Scroll to learn more
                     </div>
                     <div className={this.state.arrowFadeIn}>
                         <i className="arrow down"></i>
@@ -187,34 +233,28 @@ class HomePage extends React.Component {
                     
                 </div> 
                 <div className="info-container">
-                    <div className="info-title">
+                    <div className={"info-title " + this.state.tagLine}>
                         <h1> Streamlines is a text editor that lets your creativity roam free. </h1>
                     </div>
                     <div className="info-block-flex">
-                        <div className="info-block">
-                            <span class="pe-7s-like2"></span>
+                        <div className={"info-block info-block-1 " + this.state.infoBlock}>
+                            <span className="pe-7s-like2"></span>
                             <h2> No Mistakes</h2>
                             <p> Backspaces are disabled, except for typos, so just keep typing everything on your mind. We believe that limiting backspaces in first drafts or journals will let the writer keep their focus on their stream of thoughts rather than structure or syntax.</p>
                         </div>
-                        <div className="info-block">
-                            <span class="pe-7s-next"></span>
+                        <div className={"info-block info-block-2 " + this.state.infoBlock}>
+                            <span className="pe-7s-next"></span>
                             <h2> No Looking Back</h2>
                             <p> As you type, the text fades behind you. This means you won't have any distractions as you write. Concentrating only on the current context will let you record all of your thoughts.</p>
                         </div>
-                        <div className="info-block">
-                            <span class="pe-7s-download"></span>
+                        <div className={"info-block info-block-3 " + this.state.infoBlock}>
+                            <span className="pe-7s-download"></span>
                             <h2> Export to Google Drive</h2>
-                            <p> When you're done, export your document to Google Drive, or just copy and paste it all to your favorite text editor. If you are logged in, Streamlines will save your files for you as well, for viewing or exporting later.</p>
+                            <p> When you're done, export your document to Google Drive, or just copy and paste it all to your favorite text editor. If you log in, Streamlines will save your files for you to view or export later.</p>
                         </div>
                     </div>
-                    <h3> Ready to get started? Press Enter to create your first Streamline! </h3>
+                    <h3 className={this.state.ready}> Ready to get started? Press Enter to create your first Streamline! </h3>
                 </div>
-                
-               
-
-
-                
-
             </div>
         );
     }

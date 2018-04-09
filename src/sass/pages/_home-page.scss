@@ -9,27 +9,16 @@
     margin-left: 2%;
     margin-bottom: 0;
 
-    opacity: 0;
 
-    &-fadeIn {
-        animation: moveInRight 1s;
-        animation-fill-mode: forwards;
-    }
 
     &-sub {
         color: lightgray;
         font-weight: 500;
         font-size: 1rem;
-        
         margin-bottom: 15px;
         margin-left: 1%;
-        
         flex-grow: 1;
-    
         align-self: flex-end;
-        
-        opacity: 0;
-
         animation-delay: 0.2s;
         
     }
@@ -75,7 +64,7 @@ i {
     &-title {
         text-align: center;
         //margin-top: 10rem;
-        padding-top: 2rem;
+        padding-top: 5rem;
     }
 
     &-container {
@@ -126,6 +115,18 @@ i {
         &-flex {
             justify-content: center;
             display: flex;
+        }
+
+        &-1 {
+            animation-delay: 0s;
+        }
+
+        &-2 {
+            animation-delay: 0.4s;
+        }
+
+        &-3 {
+            animation-delay: 0.8s;
         }
     }
 }

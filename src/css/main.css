@@ -64,16 +64,13 @@ html, body {
     opacity: 0;
     transform: translateY(2rem);
   }
-  80% {
-    transform: translateY(-0.5rem);
-  }
   100% {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-@keyframes fadeOutTop {
+@keyframes nextLine {
   0% {
     opacity: 1;
   }
@@ -111,6 +108,74 @@ html, body {
     transform: translateX(0rem) translateY(0rem) rotate(0deg);
     visibility: visible;
   }
+}
+
+@keyframes fadeOutTop {
+  0% {
+    opacity: 1;
+    transform: translateY(0rem);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+}
+
+@keyframes fadeOutBottom {
+  0% {
+    opacity: 1;
+    transform: translateY(0rem);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.fadeIn-delay0 {
+  animation: moveInLeft 1s;
+  animation-fill-mode: backwards;
+}
+
+.fadeIn-delay1 {
+  animation: moveInLeft 1s;
+  animation-fill-mode: backwards;
+  animation-delay: 0.2s;
+}
+
+.fadeIn-delay2 {
+  animation: moveInLeft 1s;
+  animation-fill-mode: backwards;
+  animation-delay: 0.4s;
+}
+
+.fadeInBottom {
+  animation: moveInBottom 1s;
+  animation-fill-mode: backwards;
+}
+
+.fadeOutTop {
+  animation: fadeOutTop 1s;
+  animation-fill-mode: backwards;
+}
+
+.fadeOutBottom {
+  animation: fadeOutBottom 1s;
+  animation-fill-mode: backwards;
+}
+
+.fadeOut {
+  animation: fadeOutBottom 1s;
+  animation-fill-mode: backwards;
 }
 
 body {
@@ -985,15 +1050,10 @@ body {
   color: white;
   border: 1px solid white;
   /* Green */
-  animation: moveInLeft 1s;
-  animation-delay: 0.2s;
-  animation-fill-mode: backwards;
 }
 
 .button-2 {
   background-color: white;
-  animation: moveInLeft 1s;
-  animation-fill-mode: backwards;
   margin-right: 10px;
 }
 
@@ -1009,9 +1069,6 @@ body {
   border-bottom: 2px solid white;
   margin-right: 10px;
   color: white;
-  animation: moveInLeft 1s;
-  animation-fill-mode: backwards;
-  animation-delay: 0.4s;
   transition: border-bottom 0.2s, transform 0.2s;
 }
 
@@ -1021,6 +1078,23 @@ body {
 
 .hidden {
   visibility: hidden;
+}
+
+.fadeIn-delay0 {
+  animation: moveInLeft 1s;
+  animation-fill-mode: backwards;
+}
+
+.fadeIn-delay1 {
+  animation: moveInLeft 1s;
+  animation-fill-mode: backwards;
+  animation-delay: 0.2s;
+}
+
+.fadeIn-delay2 {
+  animation: moveInLeft 1s;
+  animation-fill-mode: backwards;
+  animation-delay: 0.4s;
 }
 
 .filter {
@@ -1050,7 +1124,7 @@ body {
 }
 
 .text-flow__fade-up {
-  animation: fadeOutTop 0.5s;
+  animation: nextLine 0.5s;
   animation-fill-mode: forwards;
 }
 
@@ -1094,12 +1168,6 @@ body {
   margin-top: 10px;
   margin-left: 2%;
   margin-bottom: 0;
-  opacity: 0;
-}
-
-.title-fadeIn {
-  animation: moveInRight 1s;
-  animation-fill-mode: forwards;
 }
 
 .title-sub {
@@ -1110,7 +1178,6 @@ body {
   margin-left: 1%;
   flex-grow: 1;
   align-self: flex-end;
-  opacity: 0;
   animation-delay: 0.2s;
 }
 
@@ -1147,7 +1214,7 @@ i {
 
 .info-title {
   text-align: center;
-  padding-top: 2rem;
+  padding-top: 5rem;
 }
 
 .info-container {
@@ -1190,6 +1257,18 @@ i {
 .info-block-flex {
   justify-content: center;
   display: flex;
+}
+
+.info-block-1 {
+  animation-delay: 0s;
+}
+
+.info-block-2 {
+  animation-delay: 0.4s;
+}
+
+.info-block-3 {
+  animation-delay: 0.8s;
 }
 
 html, body {
