@@ -13,6 +13,34 @@
     }
 }
 
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+
+    100% {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@keyframes moveInTop {
+    0% {
+        opacity: 0;
+        transform: translateY(-1rem);
+        visibility: hidden;
+    }
+
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+    }
+}
+
 @keyframes moveInRight {
     0% {
         opacity: 0;

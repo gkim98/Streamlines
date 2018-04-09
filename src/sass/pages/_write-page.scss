@@ -1,4 +1,4 @@
-html, body {margin: 0; height: 100%; overflow: hidden}
+html, body {margin: 0; height: 100%; }
 
 .main-container {
   height: 100vh;
@@ -7,6 +7,10 @@ html, body {margin: 0; height: 100%; overflow: hidden}
   background-size: cover;
   background-position: top;
   position: relative;
+
+
+
+
 }
 
 .flex-container {
@@ -14,5 +18,11 @@ html, body {margin: 0; height: 100%; overflow: hidden}
   //background-color:red;
   justify-content: space-between;
   flex-wrap: wrap;
-  
+  position: fixed;
+  left: 0;
+    top: 0;
+    width: 100%;
+  background-color: black;
+  z-index: 500;
+  //border-bottom: 1px solid white;
 }

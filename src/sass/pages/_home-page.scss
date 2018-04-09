@@ -35,3 +35,44 @@
     }
 
 }
+
+.learn {
+    position: absolute;
+    color: lightgray;
+    bottom: 4%;
+    right: 50%;
+    transform: translateX(50%);
+
+    animation: fadeIn 1s;
+    animation-fill-mode: forwards;
+}
+
+i {
+    border: solid lightgray;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 10px;
+}
+
+.down {
+    transform: rotate(45deg) translateX(-75%);
+    position: absolute;
+    
+
+}
+
+.stretch {
+    transform: scale(1.5,1);
+    position: absolute;
+    bottom: 3%;
+    left: 50%;
+    animation: fadeIn 1s;
+    animation-fill-mode: forwards;
+
+}
+
+.info-container {
+    position: relative;
+    height: 100vh;
+    //width: 100%;
+}

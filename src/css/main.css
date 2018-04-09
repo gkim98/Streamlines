@@ -7,7 +7,6 @@ body {
 html, body {
   margin: 0;
   height: 100%;
-  overflow: hidden;
 }
 
 @keyframes moveInLeft {
@@ -19,6 +18,30 @@ html, body {
   100% {
     opacity: 1;
     transform: translateX(0);
+    visibility: visible;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes moveInTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-1rem);
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
     visibility: visible;
   }
 }
@@ -261,10 +284,45 @@ body {
   animation-delay: 0.2s;
 }
 
+.learn {
+  position: absolute;
+  color: lightgray;
+  bottom: 4%;
+  right: 50%;
+  transform: translateX(50%);
+  animation: fadeIn 1s;
+  animation-fill-mode: forwards;
+}
+
+i {
+  border: solid lightgray;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 10px;
+}
+
+.down {
+  transform: rotate(45deg) translateX(-75%);
+  position: absolute;
+}
+
+.stretch {
+  transform: scale(1.5, 1);
+  position: absolute;
+  bottom: 3%;
+  left: 50%;
+  animation: fadeIn 1s;
+  animation-fill-mode: forwards;
+}
+
+.info-container {
+  position: relative;
+  height: 100vh;
+}
+
 html, body {
   margin: 0;
   height: 100%;
-  overflow: hidden;
 }
 
 .main-container {
@@ -279,5 +337,11 @@ html, body {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background-color: black;
+  z-index: 500;
 }
 /*# sourceMappingURL=main.css.map */
