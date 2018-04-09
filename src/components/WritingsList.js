@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { startAddWriting, startGetWritings} from '../actions/writings';
+import WritingPiece from './WritingPiece';
 
 class WritingsList extends React.Component {
     constructor(props) {
@@ -31,7 +32,12 @@ class WritingsList extends React.Component {
                 <input type='text' id='writing'></input>
                 <button onClick={this.addWriting}>Add Writing</button>
                 {this.props.writings.map((writing) => {
-                    return <p key={writing.id}>{writing.text}</p>
+                    return (
+                        <WritingPiece 
+                            key={writing.id} 
+                            text={writing.text} 
+                        />
+                    )
                 })}
             </div>
         )
