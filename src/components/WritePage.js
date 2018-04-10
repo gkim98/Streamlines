@@ -5,6 +5,10 @@ function countWords(str) {
     return str.trim().split(/\s+/).length;
   }
 
+  window.onbeforeunload = function() {
+    return "Data will be lost if you leave the page, are you sure?";
+  };
+
 
 export default class WritePage extends Component {
     constructor(props) {
@@ -18,6 +22,7 @@ export default class WritePage extends Component {
                     characterCount: 0,
                     count1ToggleClass: "",
                     count2ToggleClass: "text-flow__count__hidden",
+                    blankEnterCount: 0,
                 };
     }
 
@@ -31,6 +36,20 @@ export default class WritePage extends Component {
     }
 
     newParagraph() {
+        if(this.state.myField==="") {
+            this.setState({blankEnterCount: this.state.blankEnterCount + 1}, function() {
+                if(this.state.blankEnterCount >= 2) {
+                    console.log("EXPORT");
+                    this.setState({blankEnterCount: 0});
+                }
+            }.bind(this));
+
+            
+                
+
+            return;
+        }
+
         this.setState({
             myText: this.state.myText + "\t" + this.state.myField + "\n",
             paragraphNumber: this.state.paragraphNumber + 1,
@@ -49,6 +68,12 @@ export default class WritePage extends Component {
         this.child.focus() 
     }
 
+    handleClick(event) {
+
+        if(event.target.className!=="title-field")
+            this.refocus();
+    }
+
     onToggleCount(event) {
         //console.log(event.target.id);
 
@@ -65,15 +90,25 @@ export default class WritePage extends Component {
         }
     }
 
+    setTitle(event) {
+        if(event.keyCode===13) {
+            this.refocus();
+        }
+    }
+
+    
+
     render() {
         return (
-            <div className="main-container" onClick={this.refocus}>
+            <div className="main-container" onClick={this.handleClick.bind(this)}>
                 
                 <TextFlow 
                     onTextChange={this.updateText.bind(this)}
                     onEnter={this.newParagraph.bind(this)}
                     onRef={ref => (this.child = ref)} />
                 <div className="filter"></div> 
+
+                <input className="title-field" placeholder="Set a Title" onKeyUp={this.setTitle.bind(this)} />
 
                 <p id="count1" className={"text-flow__count " + this.state.count1ToggleClass} onClick={this.onToggleCount.bind(this)} > 
                     Sentence {this.state.sentenceNumber}: Paragraph {this.state.paragraphNumber}&nbsp; &#8594;

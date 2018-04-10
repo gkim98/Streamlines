@@ -84,11 +84,7 @@ class HomePage extends React.Component {
      
         scrollY = document.documentElement.scrollTop;
         
-        if(scrollY > 200) {
-            this.setState({
-                titleFadeIn: "fadeIn-delay0"
-            });
-        }
+
 
         var percent = scrollY / docHeight * 100;
         if(percent >=15) {
@@ -108,7 +104,7 @@ class HomePage extends React.Component {
                 this.setState({
                     ready: "fadeInBottom"
                 });
-            }.bind(this), 2000);
+            }.bind(this), 1000);
         }
 
         // console.log("Window height: " + winHeight);
@@ -151,7 +147,8 @@ class HomePage extends React.Component {
                 arrowFadeIn: "stretch",
                 fadeIn1: "fadeIn-delay0",
                 fadeIn2: "fadeIn-delay1",
-                fadeIn3: "fadeIn-delay2"
+                fadeIn3: "fadeIn-delay2",
+                titleFadeIn: "fadeIn-delay0"
             });
             
             enableScroll();
@@ -163,42 +160,26 @@ class HomePage extends React.Component {
 
     // New streamline is created (when enter is pressed)
     newSession() {
-        if(scrollY !==0) {
+        if(scrollY !==0) 
             scrollTo(document.documentElement, 0, 50);
+  
 
-            setTimeout(function() {
-                this.setState({
-                    titleFadeIn: "hidden",
-                    fadeIn1: "fadeOutTop",
-                    fadeIn2: "fadeOutTop",
-                    fadeIn3: "fadeOutTop",
-                    learnFadeIn: "hidden",
-                    arrowFadeIn: "hidden"
-                });
-        
-                setTimeout(function() {
-                    this.props.history.push('/write')
-                }.bind(this), 500);
-            }.bind(this), 50);
+        this.setState({
+            titleFadeIn: "hidden",
+            fadeIn1: "fadeOutTop",
+            fadeIn2: "fadeOutTop",
+            fadeIn3: "fadeOutTop",
+            learnFadeIn: "hidden",
+            arrowFadeIn: "hidden"
+        });
 
-        } else {
-
-            this.setState({
-                titleFadeIn: "hidden",
-                fadeIn1: "fadeOutTop",
-                fadeIn2: "fadeOutTop",
-                fadeIn3: "fadeOutTop",
-                learnFadeIn: "hidden",
-                arrowFadeIn: "hidden"
-            });
-
-            setTimeout(function() {
-                this.props.history.push('/write')
-            }.bind(this), 500);
-        }
+        setTimeout(function() {
+            this.props.history.push('/write')
+        }.bind(this), 500);
+    } 
 
 
-    }
+    
 
     render () {
         return (
@@ -223,7 +204,7 @@ class HomePage extends React.Component {
                     <div className="filter" /> 
 
                     <div className={this.state.learnFadeIn}>
-                        What is Streamlines? Scroll to learn more
+                        or, scroll down to learn more
                     </div>
                     <div className={this.state.arrowFadeIn}>
                         <i className="arrow down"></i>

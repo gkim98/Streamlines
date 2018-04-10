@@ -87,12 +87,12 @@ html, body {
 @keyframes fadeOutRight {
   0% {
     opacity: 1;
-    transform: translateX(0rem) translateY(0rem) rotate(0deg);
+    transform: translateX(0rem);
     visibility: visible;
   }
   100% {
     opacity: 0;
-    transform: translateX(4rem) translateY(0.5rem) rotate(5deg);
+    transform: translateX(4rem);
     visibility: hidden;
   }
 }
@@ -100,12 +100,12 @@ html, body {
 @keyframes fadeInLeft {
   0% {
     opacity: 0;
-    transform: translateX(-4rem) translateY(0.5rem) rotate(-5deg);
+    transform: translateX(-4rem);
     visibility: hidden;
   }
   100% {
     opacity: 1;
-    transform: translateX(0rem) translateY(0rem) rotate(0deg);
+    transform: translateX(0rem);
     visibility: visible;
   }
 }
@@ -1128,37 +1128,6 @@ body {
   animation-fill-mode: forwards;
 }
 
-.text-flow__count {
-  position: absolute;
-  color: white;
-  font-size: 1rem;
-  padding: 8px;
-  border-radius: 10px;
-  font-weight: 200;
-  bottom: 0%;
-  right: 1%;
-  transition: color 0.5s, background-color 0.5s;
-}
-
-.text-flow__count__fadeIn {
-  animation: fadeInLeft 0.5s;
-  animation-fill-mode: forwards;
-}
-
-.text-flow__count__fadeOut {
-  animation: fadeOutRight 0.5s;
-  animation-fill-mode: forwards;
-}
-
-.text-flow__count__hidden {
-  visibility: hidden;
-}
-
-.text-flow__count:hover {
-  background-color: white;
-  color: black;
-}
-
 .title {
   top: 2%;
   left: 2%;
@@ -1294,5 +1263,49 @@ html, body {
   width: 100%;
   background-color: black;
   z-index: 500;
+}
+
+.title-field {
+  position: absolute;
+  bottom: 1.5%;
+  left: 1%;
+  padding: 20px;
+  font-size: 1rem;
+  border: none;
+  outline-width: 0;
+  background-color: transparent;
+  color: white;
+  width: 30%;
+}
+
+.text-flow__count {
+  position: absolute;
+  color: white;
+  font-size: 1rem;
+  padding: 8px;
+  border-radius: 10px;
+  font-weight: 200;
+  bottom: 0%;
+  right: 1%;
+  transition: color 0.5s, background-color 0.5s;
+}
+
+.text-flow__count__fadeIn {
+  animation: fadeInLeft 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.text-flow__count__fadeOut {
+  animation: fadeOutRight 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.text-flow__count__hidden {
+  visibility: hidden;
+}
+
+.text-flow__count:hover {
+  background-color: white;
+  color: black;
 }
 /*# sourceMappingURL=main.css.map */

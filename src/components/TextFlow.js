@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 export default class TextFlow extends React.Component {
     constructor(props) {
         super(props);
@@ -7,6 +8,7 @@ export default class TextFlow extends React.Component {
         this.state={
             fadeUpClass: "",
             userInput: true,
+            allowedBackspaces: 0,
         };
     }
 
@@ -24,7 +26,16 @@ export default class TextFlow extends React.Component {
     }
 
     handleKeyPress(event) {
-        //console.log(event.keyCode);
+        console.log(event.keyCode);
+
+        if(event.keyCode===32) {
+            this.setState({allowedBackspaces: 0});
+            return;
+        } 
+        
+        if(event.keyCode!==8)
+            this.setState({allowedBackspaces: this.state.allowedBackspaces + 1});
+       
 
         if(this.state.userInput===false && event.metaKey===false) {
             event.preventDefault();
@@ -32,7 +43,7 @@ export default class TextFlow extends React.Component {
         }
 
         // Disables backspace, arrow keys, home/end keys
-        if(event.keyCode===8 || (35<=event.keyCode && event.keyCode<=40)) {
+        if((35<=event.keyCode && event.keyCode<=40)) {
             event.preventDefault();
             return;
         }
@@ -41,6 +52,14 @@ export default class TextFlow extends React.Component {
         if(event.metaKey && event.keyCode===65) {
             event.preventDefault();
             return;
+        }
+
+        console.log(this.state.allowedBackspaces);
+
+        if(event.keyCode===8 && this.state.allowedBackspaces===0) {
+            event.preventDefault();
+        } else if(event.keyCode===8){
+            this.setState({allowedBackspaces: this.state.allowedBackspaces - 1});
         }
             
 

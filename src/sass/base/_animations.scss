@@ -88,13 +88,13 @@
 @keyframes fadeOutRight {
     0% {
         opacity: 1;
-        transform: translateX(0rem) translateY(0rem) rotate(0deg);
+        transform: translateX(0rem) ;
         visibility: visible;
     }
 
     100% {
         opacity: 0;
-        transform: translateX(+4rem) translateY(0.5rem) rotate(5deg);
+        transform: translateX(+4rem) ;
         visibility: hidden;
     }
 }
@@ -102,13 +102,13 @@
 @keyframes fadeInLeft {
     0% {
         opacity: 0;
-        transform: translateX(-4rem) translateY(0.5rem) rotate(-5deg);
+        transform: translateX(-4rem) ;
         visibility: hidden;
     }
 
     100% {
         opacity: 1;
-        transform: translateX(0rem) translateY(0rem) rotate(0deg);
+        transform: translateX(0rem);
         visibility: visible;
     }
 }
