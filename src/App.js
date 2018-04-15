@@ -21,7 +21,7 @@ class App extends Component {
 
 //firebase.database().ref('writings').remove();
 
-// test if auth is working
+// conditional based on auth status
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     console.log('log in');

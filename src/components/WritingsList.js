@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { startAddWriting, startGetWritings} from '../actions/writings';
 import WritingPiece from './WritingPiece';
 
+//test
+import { startLogout } from '../actions/auth';
+
 class WritingsList extends React.Component {
     constructor(props) {
         super(props);
@@ -39,6 +42,7 @@ class WritingsList extends React.Component {
                         />
                     )
                 })}
+                <button onClick={this.props.startLogout}>Logout</button>
             </div>
         )
     }
@@ -51,4 +55,11 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(WritingsList);
+const WritingsListState = connect(mapStateToProps)(WritingsList);
+
+// attaches actions to component
+const mapDispatchToProps = (dispatch) => ({
+    startLogout: () => dispatch(startLogout())
+});
+
+export default connect(undefined, mapDispatchToProps)(WritingsListState);
