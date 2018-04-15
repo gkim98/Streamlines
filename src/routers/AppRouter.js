@@ -1,12 +1,15 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
 import HomePage from '../components/HomePage';
 import WritePage from '../components/WritePage';
 import HistoryPage from '../components/HistoryPage';
 import HistorySpecificPage from '../components/HistorySpecificPage';
 
+export const history = createHistory();
+
 const AppRouter = () => (
-    <BrowserRouter>
+    <Router history={history}>
         <div>
             <Switch>
                 <Route path="/" component={HomePage} exact={true} />
@@ -15,7 +18,7 @@ const AppRouter = () => (
                 <Route path="/write" component={WritePage} />
             </Switch>
         </div>
-    </BrowserRouter>
+    </Router>
 );
 
 export default AppRouter;

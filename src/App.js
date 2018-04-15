@@ -1,33 +1,22 @@
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
 import './App.css';
 import AppRouter from './routers/AppRouter';
 
-import { Provider } from 'react-redux';
-import configureStore from './store/configureStore';
 import { startAddWriting } from './actions/writings';
-import { firebase } from './firebase/firebase';
-
-const store = configureStore();
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
-      <Provider store={store}>
+      <Provider store={this.props.store}>
         <AppRouter />
       </Provider>
     );
   }
 }
-
-//firebase.database().ref('writings').remove();
-
-// conditional based on auth status
-firebase.auth().onAuthStateChanged((user) => {
-  if (user) {
-    console.log('log in');
-  } else {
-    console.log('log out');
-  }
-});
 
 export default App;

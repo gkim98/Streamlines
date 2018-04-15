@@ -1,7 +1,7 @@
 import React from 'react';
 import TextFlow from './TextFlow';
 import { connect } from 'react-redux';
-import { startLogin } from '../actions/auth';
+import { startLogin, startLogout } from '../actions/auth';
 import { withRouter } from "react-router-dom";
 
 var scrollY = 0;
@@ -190,7 +190,11 @@ class HomePage extends React.Component {
                         <div className={"title-sub " + this.state.titleFadeIn}> No mistakes in creativity </div>
                         <div className="button-container">
                             <button className={"button button-info " + this.state.fadeIn3}> History </button>
-                            <button className={"button button-1 " + this.state.fadeIn2} onClick={this.props.startLogin} > Log In </button>
+                            {
+                                this.props.auth.uid ? 
+                                <button className={"button button-1 " + this.state.fadeIn2} onClick={this.props.startLogout} > Log Out </button> :
+                                <button className={"button button-1 " + this.state.fadeIn2} onClick={this.props.startLogin} > Log In </button>
+                            }
                             <button className={"button button-2 " + this.state.fadeIn1}> Sign Up </button>
                         </div>
                     </div>
@@ -241,9 +245,18 @@ class HomePage extends React.Component {
     }
 }
 
-// connect auth action to the component
-const mapDispatchToProps = (dispatch) => ({
-    startLogin: () => dispatch(startLogin())
+
+// connects redux store to the component (user id)
+const mapStateToProps = (state) => ({
+    auth: state.auth
 });
 
-export default connect(undefined, mapDispatchToProps)(withRouter(HomePage));
+const HomePageState = connect(mapStateToProps)(HomePage);
+
+// connect auth action to the component
+const mapDispatchToProps = (dispatch) => ({
+    startLogin: () => dispatch(startLogin()),
+    startLogout: () => dispatch(startLogout())
+});
+
+export default connect(undefined, mapDispatchToProps)(withRouter(HomePageState));
