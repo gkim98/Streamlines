@@ -1138,6 +1138,10 @@ body {
   overflow: scroll;
 }
 
+.writing-piece::scrollbar {
+  display: none;
+}
+
 .writing-piece-container {
   min-width: 30%;
   margin: 0%;
