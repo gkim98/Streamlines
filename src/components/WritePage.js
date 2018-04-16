@@ -100,7 +100,7 @@ export default class WritePage extends Component {
 
     render() {
         return (
-            <div className="main-container" onClick={this.handleClick.bind(this)}>
+            <div className="main-container overflow" onClick={this.handleClick.bind(this)}>
                 
                 <TextFlow 
                     onTextChange={this.updateText.bind(this)}

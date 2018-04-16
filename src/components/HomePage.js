@@ -82,7 +82,8 @@ class HomePage extends React.Component {
         var docHeight = Math.max( body.scrollHeight, body.offsetHeight, 
                         html.clientHeight, html.scrollHeight, html.offsetHeight );
      
-        scrollY = document.documentElement.scrollTop;
+
+        var scrollY = document.scrollingElement.scrollTop || document.documentElement.scrollTop;
         
 
 
@@ -107,10 +108,10 @@ class HomePage extends React.Component {
             }.bind(this), 1000);
         }
 
-        // console.log("Window height: " + winHeight);
-        // console.log("Doc height: " + docHeight);
-        // console.log("Scroll: " + scrollY);
-        // console.log("%: " + scrollY / docHeight * 100);
+        console.log("Window height: " + winHeight);
+        console.log("Doc height: " + docHeight);
+        console.log("Scroll: " + scrollY);
+        console.log("%: " + scrollY / docHeight * 100);
 
      }
 

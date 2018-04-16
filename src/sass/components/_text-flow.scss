@@ -11,8 +11,6 @@
 
 .text-flow {
     &__text-field { 
-        
-
         position: absolute;
         top: 50%;
         right: 50%;
@@ -21,7 +19,7 @@
         width: 100%;
 
         border: none;
-        outline-width: 0;
+        outline: none;
         background-color: $background-color;
     }
   

@@ -1114,7 +1114,7 @@ body {
   transform: translateY(-50%);
   width: 100%;
   border: none;
-  outline-width: 0;
+  outline: none;
   background-color: black;
 }
 
@@ -1126,6 +1126,12 @@ body {
 .text-flow__fade-up {
   animation: nextLine 0.5s;
   animation-fill-mode: forwards;
+}
+
+.writing-piece {
+  color: red;
+  background-color: yellow;
+  border: 2px solid black;
 }
 
 .title {
@@ -1243,6 +1249,10 @@ i {
 html, body {
   margin: 0;
   height: 100%;
+}
+
+.overflow {
+  overflow: hidden;
 }
 
 .main-container {

@@ -1,5 +1,9 @@
 html, body {margin: 0; height: 100%; }
 
+.overflow {
+  overflow: hidden;
+}
+
 .main-container {
   height: 100vh;
   background-color: $background-color;
