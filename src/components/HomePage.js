@@ -189,10 +189,14 @@ class HomePage extends React.Component {
                         <div className={"title " + this.state.titleFadeIn}> Streamlines </div>
                         <div className={"title-sub " + this.state.titleFadeIn}> No mistakes in creativity </div>
                         <div className="button-container">
-                            <button className={"button button-info " + this.state.fadeIn3}> History </button>
                             {
                                 this.props.auth.uid ? 
-                                <button className={"button button-1 " + this.state.fadeIn2} onClick={this.props.startLogout} > Log Out </button> :
+                                (
+                                    <div>
+                                        <button className={"button button-info " + this.state.fadeIn3}> History </button>
+                                        <button className={"button button-1 " + this.state.fadeIn2} onClick={this.props.startLogout} > Log Out </button> 
+                                    </div>
+                                ) :
                                 <button className={"button button-1 " + this.state.fadeIn2} onClick={this.props.startLogin} > Log In </button>
                             }
                             <button className={"button button-2 " + this.state.fadeIn1}> Sign Up </button>
