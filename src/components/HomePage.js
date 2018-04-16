@@ -193,7 +193,11 @@ class HomePage extends React.Component {
                                 this.props.auth.uid ? 
                                 (
                                     <div>
-                                        <button className={"button button-info " + this.state.fadeIn3}> History </button>
+                                        <button className={"button button-info " + this.state.fadeIn3}
+                                            onClick={() => {
+                                                this.props.history.push('/history');
+                                            }}
+                                        > History </button>
                                         <button className={"button button-1 " + this.state.fadeIn2} onClick={this.props.startLogout} > Log Out </button> 
                                     </div>
                                 ) :
