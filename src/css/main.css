@@ -1022,6 +1022,40 @@ body {
   content: "\e67f";
 }
 
+.menu-bar {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background-color: black;
+  z-index: 500;
+}
+
+.menu-bar__title {
+  top: 2%;
+  left: 2%;
+  color: white;
+  font-weight: 500;
+  font-size: 2.5rem;
+  margin-top: 10px;
+  margin-left: 2%;
+  margin-bottom: 0;
+}
+
+.menu-bar__title-sub {
+  color: lightgray;
+  font-weight: 500;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  margin-left: 1%;
+  flex-grow: 1;
+  align-self: flex-end;
+  animation-delay: 0.2s;
+}
+
 .button {
   text-decoration: none;
   border-radius: 10px;
@@ -1054,9 +1088,11 @@ body {
 .button-2 {
   background-color: white;
   margin-right: 10px;
+  animation-delay: 0.2s;
 }
 
 .button-info {
+  animation-delay: 0.4s;
   text-decoration: none;
   border-radius: 0;
   padding: 10px 40px;
@@ -1077,23 +1113,6 @@ body {
 
 .hidden {
   visibility: hidden;
-}
-
-.fadeIn-delay0 {
-  animation: moveInLeft 1s;
-  animation-fill-mode: backwards;
-}
-
-.fadeIn-delay1 {
-  animation: moveInLeft 1s;
-  animation-fill-mode: backwards;
-  animation-delay: 0.2s;
-}
-
-.fadeIn-delay2 {
-  animation: moveInLeft 1s;
-  animation-fill-mode: backwards;
-  animation-delay: 0.4s;
 }
 
 .filter {

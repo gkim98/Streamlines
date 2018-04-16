@@ -20,12 +20,10 @@ class HistoryPage extends React.Component {
             
                                 Back 
                             </button>
-                            {/* <button className={"button button-2 "} onClick={this.props.startLogout} > Log Out </button>  */}
+                            
                         </div>
                                     
-                                        {/* <button className={"button button-2 "} onClick={this.props.startLogin} > Log In </button> */}
-                                    
-                                    {/* <button className={"button button-2 " + this.state.fadeIn1}> Sign Up </button> */}
+                                      
                     </div>
                 </div>
 

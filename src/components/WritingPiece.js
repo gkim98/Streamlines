@@ -7,23 +7,25 @@ function countWords(str) {
 class WritingPiece extends React.Component {
     constructor(props) {
         super(props);
-        
+
         this.state = {
-            highlighted: "",
+            highlighted: 0,
         };
 
-
+        this.getHighlighted = this.getHighlighted.bind(this);
     }
 
+    getHighlighted() {
+        if(this.props.id===this.props.highlighted)
+            return "highlighted";
 
-
+        return "";
+    }
 
     render() {
-        
-
         return (
             <div className="writing-piece-container">
-                <div className="padding" id={this.props.id}>
+                <div className={"padding " + this.getHighlighted()} id={this.props.id}>
                     <div className="writing-piece">
                         <div className="writing-piece-flex">
                             <p className="writing-piece-text"> 

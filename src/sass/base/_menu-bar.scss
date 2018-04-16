@@ -1,0 +1,41 @@
+.menu-bar{
+    display: flex;
+    //background-color:red;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: fixed;
+    left: 0;
+      top: 0;
+      width: 100%;
+    background-color: black;
+    z-index: 500;
+    //border-bottom: 1px solid white;
+
+
+    &__title {
+        top: 2%;
+        left: 2%;
+        color: white;
+        font-weight: 500;
+        font-size: 2.5rem;
+        
+        margin-top: 10px;
+        margin-left: 2%;
+        margin-bottom: 0;
+    
+    
+    
+        &-sub {
+            color: lightgray;
+            font-weight: 500;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            margin-left: 1%;
+            flex-grow: 1;
+            align-self: flex-end;
+            animation-delay: 0.2s;
+            
+        }
+    
+    }
+  }

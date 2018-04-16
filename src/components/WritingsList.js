@@ -7,16 +7,12 @@ import WritingPiece from './WritingPiece';
 import { startLogout } from '../actions/auth';
 
 
-function appendClass(id, name) {
-    var element = document.getElementById(id);
-    element.classList.add(name);
-}
 
 class WritingsList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            highlighted: 0,
         };
         this.addWriting = this.addWriting.bind(this);
     }
@@ -35,14 +31,10 @@ class WritingsList extends React.Component {
 
         var selected = Math.floor( (percent + .15) / .30);
         
-        this.props.writings.map((writing, index) => {
-            var element = document.getElementById(index);
-            element.classList.remove("highlighted");
+        this.setState({
+            highlighted: selected,
         });
 
-        console.log(selected);
-
-        appendClass(selected, "highlighted")
 
     }
 
@@ -72,8 +64,9 @@ class WritingsList extends React.Component {
                     {this.props.writings.map((writing, index) => {
                         return (
                             <WritingPiece 
-                                key={writing.id} 
+                                key={index} 
                                 text={writing.text} 
+                                highlighted={this.state.highlighted}
                                 id={index}
                             />
                         )

@@ -36,9 +36,11 @@
         // animation: moveInLeft 1s;
         // animation-fill-mode: backwards;
         margin-right: 10px;
+        animation-delay: 0.2s
     }
 
     &-info {
+        animation-delay: 0.4s;
         text-decoration: none;
         border-radius: 0;
         padding: 10px 40px;
@@ -69,22 +71,3 @@
     visibility: hidden;
 }
 
-.fadeIn-delay {
-    &0 {
-        animation: moveInLeft 1s;
-        animation-fill-mode: backwards;
-    }
-    
-    &1 {
-        animation: moveInLeft 1s;
-        animation-fill-mode: backwards;
-        animation-delay: 0.2s;
-    }
-
-    &2 {
-        animation: moveInLeft 1s;
-        animation-fill-mode: backwards;
-        animation-delay: 0.4s;
-    }
-
-}
