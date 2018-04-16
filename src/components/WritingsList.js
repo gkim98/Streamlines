@@ -6,6 +6,12 @@ import WritingPiece from './WritingPiece';
 //test
 import { startLogout } from '../actions/auth';
 
+
+function appendClass(id, name) {
+    var element = document.getElementById(id);
+    element.classList.add(name);
+}
+
 class WritingsList extends React.Component {
     constructor(props) {
         super(props);
@@ -15,8 +21,34 @@ class WritingsList extends React.Component {
         this.addWriting = this.addWriting.bind(this);
     }
 
+    handleScroll() {
+        var winHeight = window.innerHeight;
+        var winWidth = window.innerWidth;
+        var body = document.body;
+        var html = document.documentElement;
+        var docHeight = Math.max( body.scrollHeight, body.offsetHeight, 
+                        html.clientHeight, html.scrollHeight, html.offsetHeight );
+     
+
+        var scrollY = document.scrollingElement.scrollLeft || document.documentElement.scrollLeft;
+        var percent = scrollY / winWidth;
+
+        var selected = Math.floor( (percent + .15) / .30);
+        
+        this.props.writings.map((writing, index) => {
+            var element = document.getElementById(index);
+            element.classList.remove("highlighted");
+        });
+
+        console.log(selected);
+
+        appendClass(selected, "highlighted")
+
+    }
+
     componentDidMount() {
-        this.props.dispatch(startGetWritings())
+        this.props.dispatch(startGetWritings());
+        window.addEventListener('scroll', this.handleScroll.bind(this));
     }
 
     addWriting() {
@@ -31,18 +63,29 @@ class WritingsList extends React.Component {
 
     render() {
         return (
-            <div>
-                <input type='text' id='writing'></input>
-                <button onClick={this.addWriting}>Add Writing</button>
-                {this.props.writings.map((writing) => {
-                    return (
-                        <WritingPiece 
-                            key={writing.id} 
-                            text={writing.text} 
-                        />
-                    )
-                })}
-                <button onClick={this.props.startLogout}>Logout</button>
+            <div className="history-container">
+                {/* <input type='text' id='writing'></input>
+                <button onClick={this.addWriting}>Add Writing</button> */}
+                <div className="history-piece-container">
+                    <div className="writing-piece-container writing-piece-container-hidden" />
+                    
+                    {this.props.writings.map((writing, index) => {
+                        return (
+                            <WritingPiece 
+                                key={writing.id} 
+                                text={writing.text} 
+                                id={index}
+                            />
+                        )
+                    })}
+
+                    <div className="writing-piece-container writing-piece-container-hidden" />
+                     
+                </div>
+
+              
+
+                
             </div>
         )
     }

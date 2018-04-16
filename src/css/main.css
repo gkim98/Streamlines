@@ -6,7 +6,6 @@ body {
 
 html, body {
   margin: 0;
-  height: 100%;
 }
 
 @keyframes moveInLeft {
@@ -1129,9 +1128,88 @@ body {
 }
 
 .writing-piece {
+  border: none;
+  height: 60vh;
+  min-width: 30%;
+  display: flex;
+  margin: 1rem;
+  padding: 1rem;
+  word-wrap: break-word;
+  overflow: scroll;
+}
+
+.writing-piece-container {
+  min-width: 30%;
+  margin: 0%;
+  border-radius: 10px;
+}
+
+.writing-piece-container-hidden {
+  min-width: 35%;
+  visibility: hidden;
+}
+
+.writing-piece-flex {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.writing-piece-stat {
+  justify-content: flex-end;
+  margin: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.writing-piece-text {
+  word-wrap: break-word;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.highlighted {
+  transform: translateY(-10px);
+  background-color: black;
+  color: white;
+}
+
+.padding {
+  margin: 1rem;
+  border-radius: 10px;
+  transition: background-color 0.4s, transform 0.4s, color 0.4s;
+}
+
+.history-container {
+  padding-top: 5rem;
+}
+
+.history-piece-container {
+  display: flex;
+  position: absolute;
+  width: 100%;
+}
+
+.history-export {
+  position: sticky;
+  width: 100%;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 10px 20x;
+  height: 3rem;
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  outline: none;
+}
+
+.pointer {
+  position: fixed;
+  bottom: 2%;
+  left: 50%;
+  transform: translate(-50%);
   color: red;
-  background-color: yellow;
-  border: 2px solid black;
 }
 
 .title {
@@ -1248,7 +1326,6 @@ i {
 
 html, body {
   margin: 0;
-  height: 100%;
 }
 
 .overflow {

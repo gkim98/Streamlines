@@ -1,5 +1,69 @@
 .writing-piece {
-    color: red;
-    background-color: yellow;
-    border: 2px solid black;
+  
+   
+    border: none;
+    //border-radius: 10px;
+
+    height: 60vh;
+    min-width: 30%;
+
+
+
+    display: flex;
+
+    margin: 1rem;
+    padding: 1rem;
+    word-wrap: break-word;
+    overflow: scroll;
+
+    &-container {
+        min-width: 30%;
+      
+      
+
+ 
+        margin: 0%;
+        border-radius: 10px;
+
+        &-hidden {
+            min-width: 35%;
+            visibility: hidden;
+        }
+    }
+
+    &-flex {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+    }
+
+    &-stat {
+        justify-content: flex-end;
+        margin: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    &-text {
+        word-wrap: break-word;
+        width: 100%;
+        flex-grow: 1;
+    }
+
 }
+
+.highlighted {
+    transform: translateY(-10px);
+    background-color: black;
+    color: white;
+}
+
+.padding {
+    margin: 1rem;
+    //background-color: #E0E0E0;
+    border-radius: 10px;
+
+    transition: background-color 0.4s, transform 0.4s, color 0.4s;
+}
+

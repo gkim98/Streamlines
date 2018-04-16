@@ -4,7 +4,8 @@ body {
   font-family: sans-serif;
 }
 
-html, body {margin: 0; height: 100%;}
+
+html, body {margin: 0; }
 
 @import "abstracts/variables";
 
@@ -16,5 +17,6 @@ html, body {margin: 0; height: 100%;}
 @import "components/text-flow";
 @import "components/writing-piece";
 
+@import "pages/history";
 @import "pages/home-page";
 @import "pages/write-page";

@@ -199,19 +199,19 @@ class HomePage extends React.Component {
                                                 this.props.history.push('/history');
                                             }}
                                         > History </button>
-                                        <button className={"button button-1 " + this.state.fadeIn2} onClick={this.props.startLogout} > Log Out </button> 
+                                        <button className={"button button-2 " + this.state.fadeIn2} onClick={this.props.startLogout} > Log Out </button> 
                                     </div>
                                 ) :
-                                <button className={"button button-1 " + this.state.fadeIn2} onClick={this.props.startLogin} > Log In </button>
+                                <button className={"button button-2 " + this.state.fadeIn2} onClick={this.props.startLogin} > Log In </button>
                             }
-                            <button className={"button button-2 " + this.state.fadeIn1}> Sign Up </button>
+                            {/* <button className={"button button-2 " + this.state.fadeIn1}> Sign Up </button> */}
                         </div>
                     </div>
 
                     
 
-                    <TextFlow onRef={
-                        ref => (this.child = ref)}
+                    <TextFlow 
+                        onRef={ref => (this.child = ref)}
                         onEnter={this.newSession.bind(this)}
                     />
                     <div className="filter" /> 
