@@ -55,6 +55,9 @@
         width: 100%;
         flex-grow: 1;
 
+        &::scrollbar {
+            display: none;
+        }
 
     }
 

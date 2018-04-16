@@ -1172,6 +1172,10 @@ body {
   flex-grow: 1;
 }
 
+.writing-piece-text::scrollbar {
+  display: none;
+}
+
 .highlighted {
   transform: translateY(-10px);
   background-color: black;
