@@ -7,6 +7,11 @@ body {
 
 html, body {margin: 0; }
 
+::-webkit-scrollbar {
+  width: 0px;  /* remove scrollbar space */
+  background: transparent;  /* optional: just make scrollbar invisible */
+}
+
 @import "abstracts/variables";
 
 @import "base/animations";

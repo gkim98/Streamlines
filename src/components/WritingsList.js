@@ -76,6 +76,8 @@ class WritingsList extends React.Component {
                      
                 </div>
 
+                <button className="button button-export"> Export to Google Drive </button>
+
               
 
                 

@@ -29,7 +29,7 @@ class HistoryPage extends React.Component {
 
                 <WritingsList />
 
-                 <p className="pointer"> ^ </p>
+              
             </div>
         );
     }

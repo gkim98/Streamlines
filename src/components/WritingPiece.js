@@ -27,14 +27,15 @@ class WritingPiece extends React.Component {
             <div className="writing-piece-container">
                 <div className={"padding " + this.getHighlighted()} id={this.props.id}>
                     <div className="writing-piece">
-                        <div className="writing-piece-flex">
+          
                             <p className="writing-piece-text"> 
                                 {this.props.text} 
                             </p>
-                        </div>
+                            
+                            <p className="writing-piece-stat">  Words: {countWords(this.props.text)} | Characters: {this.props.text.length} </p>
                     </div>
 
-                    <p className="writing-piece-stat">  Words: {countWords(this.props.text)} | Characters: {this.props.text.length} </p>
+                   
                 </div>
              </div>
         );

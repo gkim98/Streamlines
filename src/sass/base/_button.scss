@@ -9,10 +9,7 @@
     
     outline: none;
 
-    transition: transform 0.2s;
-    &:hover {
-        transform: translateY(5px);
-    }
+
 
 
     &-container {
@@ -36,7 +33,12 @@
         // animation: moveInLeft 1s;
         // animation-fill-mode: backwards;
         margin-right: 10px;
-        animation-delay: 0.2s
+        animation-delay: 0.2s;
+
+        transition: transform 0.2s;
+        &:hover {
+            transform: translateY(5px);
+        }
     }
 
     &-info {
@@ -62,7 +64,17 @@
         transition: border-bottom 0.2s, transform 0.2s;
         &:hover {
             border-bottom: 2px solid $caret-color;
+            transform: translateY(5px);
         }
+    }
+
+    &-export {
+        position: fixed;
+        bottom: 1%;
+        left: 50%;
+        height: 8%;
+        padding: 10px 50px;
+        transform: translateX(-50%);
     }
 
 }
