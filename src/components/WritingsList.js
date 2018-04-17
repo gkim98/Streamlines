@@ -17,7 +17,7 @@ class WritingsList extends React.Component {
         this.addWriting = this.addWriting.bind(this);
     }
 
-    handleScroll() {
+    handleScroll(event, delta) {
         var winHeight = window.innerHeight;
         var winWidth = window.innerWidth;
         var body = document.body;
@@ -34,13 +34,17 @@ class WritingsList extends React.Component {
         this.setState({
             highlighted: selected,
         });
+    }
 
-
+    handleWheel(event) {
+        document.scrollingElement.scrollLeft -= event.wheelDelta / 2;
+        event.preventDefault();
     }
 
     componentDidMount() {
         this.props.dispatch(startGetWritings());
         window.addEventListener('scroll', this.handleScroll.bind(this));
+        window.addEventListener('mousewheel', this.handleWheel.bind(this));
     }
 
     addWriting() {
