@@ -1120,11 +1120,24 @@ body {
 }
 
 .button-export {
+  padding: 10px 20px;
+}
+
+.button-copy {
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+}
+
+.button-copy-green {
+  background-color: green;
+}
+
+.button-flex {
+  display: flex;
   position: fixed;
   bottom: 1%;
   left: 50%;
-  height: 8%;
-  padding: 10px 50px;
   transform: translateX(-50%);
 }
 
@@ -1175,7 +1188,7 @@ body {
 
 .writing-piece-container {
   min-width: 30%;
-  height: 70%;
+  height: 80%;
   margin: 0%;
   border-radius: 10px;
 }
@@ -1203,6 +1216,7 @@ body {
   word-wrap: break-word;
   width: 100%;
   overflow: scroll;
+  white-space: pre-line;
 }
 
 .highlighted {

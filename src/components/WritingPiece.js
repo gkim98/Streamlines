@@ -28,7 +28,7 @@ class WritingPiece extends React.Component {
                 <div className={"padding " + this.getHighlighted()} id={this.props.id}>
                     <div className="writing-piece">
           
-                            <p className="writing-piece-text"> 
+                            <p className="writing-piece-text"  id={"text" + this.props.id}> 
                                 {this.props.text} 
                             </p>
                             

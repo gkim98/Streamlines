@@ -11,6 +11,7 @@ export const startAddWriting = (writingData = {}) => {
     return (dispatch, getState) => {
         const uid = getState().auth.uid;
         const {
+            title = '',
             text = '',
             createdAt = ''
         } = writingData;

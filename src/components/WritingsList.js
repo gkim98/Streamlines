@@ -2,17 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { startAddWriting, startGetWritings} from '../actions/writings';
 import WritingPiece from './WritingPiece';
-
-//test
 import { startLogout } from '../actions/auth';
 
-
+function CopyToClipboard(containerid) {
+    var range = document.createRange();
+    range.selectNode(document.getElementById(containerid));
+    window.getSelection().addRange(range);
+    document.execCommand("copy");
+    window.getSelection().removeAllRanges();
+}
 
 class WritingsList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             highlighted: 0,
+            oldHighlighted: 0,
         };
         this.addWriting = this.addWriting.bind(this);
     }
@@ -31,20 +36,47 @@ class WritingsList extends React.Component {
 
         var selected = Math.floor( (percent + .15) / .30);
         
-        this.setState({
-            highlighted: selected,
-        });
+        
+
+        if(selected != this.state.oldHighlighted) {
+            var tempOld = this.state.highlighted
+
+            this.setState({
+                oldHighlighted: tempOld,
+                highlighted: selected,
+                
+            });
+
+            this.props.onSelect();
+        }
+
+    
+
+
     }
 
     handleWheel(event) {
-        document.scrollingElement.scrollLeft -= event.wheelDelta / 2;
-        event.preventDefault();
+        //document.scrollingElement.scrollLeft -= event.wheelDelta / 2;
+
+
+        console.log(event.wheelDeltaY + " " + event.wheelDeltaX);
+        if( Math.abs(event.wheelDeltaY) > Math.abs(event.wheelDeltaX)) {
+            console.log("v");
+            document.scrollingElement.scrollLeft -= event.wheelDelta / 2;
+            event.preventDefault();
+        }
+            
     }
 
     componentDidMount() {
         this.props.dispatch(startGetWritings());
         window.addEventListener('scroll', this.handleScroll.bind(this));
         window.addEventListener('mousewheel', this.handleWheel.bind(this));
+        this.props.onRef(this);
+    }
+
+    componentWillUnmount() {
+        this.props.onRef(undefined);
     }
 
     addWriting() {
@@ -55,6 +87,12 @@ class WritingsList extends React.Component {
         }
 
         this.props.dispatch(startAddWriting(writing))
+    }
+
+    copyText() {
+        //console.log(document.getElementById("text" + this.state.highlighted));
+        console.log(this.state.highlighted);
+        CopyToClipboard("text" + this.state.highlighted);
     }
 
     render() {
@@ -80,7 +118,7 @@ class WritingsList extends React.Component {
                      
                 </div>
 
-                <button className="button button-export"> Export to Google Drive </button>
+                
 
               
 

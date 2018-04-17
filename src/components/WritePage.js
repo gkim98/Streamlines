@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import TextFlow from './TextFlow';
+import { startAddWriting} from '../actions/writings';
+import { connect } from 'react-redux';
 
 function countWords(str) {
     return str.trim().split(/\s+/).length;
@@ -10,7 +12,7 @@ function countWords(str) {
   };
 
 
-export default class WritePage extends Component {
+class WritePage extends Component {
     constructor(props) {
         super(props);
         
@@ -23,7 +25,18 @@ export default class WritePage extends Component {
                     count1ToggleClass: "",
                     count2ToggleClass: "text-flow__count__hidden",
                     blankEnterCount: 0,
-                };
+        };
+        this.addWriting = this.addWriting.bind(this);
+    }
+
+    addWriting() {
+        const text = this.state.myText;
+
+        const writing = {
+            text
+        }
+
+        this.props.dispatch(startAddWriting(writing))
     }
 
     updateText(myField) {
@@ -39,7 +52,8 @@ export default class WritePage extends Component {
         if(this.state.myField==="") {
             this.setState({blankEnterCount: this.state.blankEnterCount + 1}, function() {
                 if(this.state.blankEnterCount >= 2) {
-                    console.log("EXPORT");
+                    this.addWriting();
+
                     this.setState({blankEnterCount: 0});
                 }
             }.bind(this));
@@ -122,4 +136,20 @@ export default class WritePage extends Component {
         );
     }
 };
+
+// sets props to the redux writing data
+const mapStateToProps = (state) => {
+    return {
+        
+    };
+};
+
+const WritePageState = connect(mapStateToProps)(WritePage);
+
+// attaches actions to component
+const mapDispatchToProps = (dispatch) => ({
+    startAddWriting: () => dispatch(startAddWriting()),
+});
+
+export default connect(undefined, mapDispatchToProps)(WritePageState);
     
