@@ -22,3 +22,4 @@ yarn-error.log*
 
 # API keys
 src/firebase/firebaseConfig.js
+src/helpers/driveConfig.js
