@@ -23,7 +23,8 @@ class WritingsList extends React.Component {
         };
         this.addWriting = this.addWriting.bind(this);
 
-        
+        this.handleScroll = this.handleScroll.bind(this);
+        this.handleWheel = this.handleWheel.bind(this);
 
     
     }
@@ -56,7 +57,7 @@ class WritingsList extends React.Component {
             this.props.onSelect();
         }
 
-    
+        console.log("YES");
        
 
     }
@@ -66,7 +67,7 @@ class WritingsList extends React.Component {
 
         //console.log(document.querySelectorAll( ":hover" )[10].scrollHeight);
 
-        console.log("YES");
+        console.log(event.wheelDeltaX);
         
         var scrollAble = false;
 
@@ -74,31 +75,29 @@ class WritingsList extends React.Component {
 
         if(preElement) 
             scrollAble = preElement.scrollHeight > preElement.clientHeight;
-
-        if( Math.abs(event.wheelDeltaY) > Math.abs(event.wheelDeltaX) && !scrollAble) {
+        
+        if( Math.abs(event.wheelDeltaY) < Math.abs(event.wheelDeltaX) ) return true;
+        else if( Math.abs(event.wheelDeltaY) > Math.abs(event.wheelDeltaX) && !scrollAble) {
             document.scrollingElement.scrollLeft -= event.wheelDelta / 4;
             event.preventDefault();
-        } else if(preElement){
+        } else if( Math.abs(event.wheelDeltaY) > Math.abs(event.wheelDeltaX) && scrollAble) {
             //console.log(preElement.scrollHeight-preElement.clientHeight + " " + preElement.scrollTop);
             if(preElement.scrollHeight-preElement.clientHeight === preElement.scrollTop) {
                 document.scrollingElement.scrollLeft -= event.wheelDelta / 4;
-
             }
 
             if(preElement.scrollTop === 0) {
                 document.scrollingElement.scrollLeft -= event.wheelDelta / 4;
-           
             }
-           
-        }
+        } 
         //}
             
     }
 
     componentDidMount() {
         
-        window.addEventListener('scroll', this.handleScroll.bind(this));
-        window.addEventListener('mousewheel', this.handleWheel.bind(this));
+        window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('mousewheel', this.handleWheel);
         this.props.onRef(this);
 
         this.props.dispatch(startGetWritings());
@@ -108,8 +107,8 @@ class WritingsList extends React.Component {
     }
 
     componentWillUnmount() {
-        window.removeEventListener('scroll', this.handleScroll.bind(this));
-        window.removeEventListener('mousewheel', this.handleWheel.bind(this));
+        window.removeEventListener('scroll', this.handleScroll);
+        window.removeEventListener('mousewheel', this.handleWheel);
         
         this.props.onRef(undefined);
     }

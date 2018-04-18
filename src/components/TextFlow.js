@@ -12,7 +12,7 @@ export default class TextFlow extends React.Component {
             value: " ",
             copyValue: " ",
             isAnimating: false,
-            inputProps: {value: null},
+            inputProps: {value: undefined},
         };
     }
 
@@ -104,7 +104,7 @@ export default class TextFlow extends React.Component {
         //console.log(message);
 
         this.setState({
-            inputProps: null
+            inputProps: undefined
         })
 
         message.split('').map(this.appendMessage.bind(this));

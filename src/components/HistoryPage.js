@@ -12,6 +12,13 @@ class HistoryPage extends React.Component {
         };
     }
 
+    componentDidMount() {
+        document.body.classList.toggle('overflow-hidden', true);
+    }
+
+    componentWillUnmount() {
+        document.body.classList.toggle('overflow-hidden', false);
+    }
 
     copy() {
         this.child.copyText();

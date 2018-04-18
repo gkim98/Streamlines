@@ -71,10 +71,15 @@ class WritePage extends Component {
         });
     }
 
+    componentWillMount() {
+        document.body.classList.toggle('overflow-hidden', true);
+    }
+
     componentWillUnmount() {
         this.setState({
             myText: this.state.myText + this.state.myField
         });
+        document.body.classList.toggle('overflow-hidden', false);
     }
 
     refocus = () => {
@@ -83,7 +88,7 @@ class WritePage extends Component {
 
     handleClick(event) {
 
-        if(event.target.className!=="title-field")
+        if(event.target.className!=="title-bar__title-field")
             this.refocus();
     }
 
@@ -134,9 +139,11 @@ class WritePage extends Component {
                     onBegin={this.hideTip.bind(this)} />
                 <div className="filter"></div> 
 
-                <input className="title-field" placeholder="Set a Title" onKeyUp={this.setTitle.bind(this)} />
+                <div className="title-bar-flex">
+                    <input className="title-bar__title-field" placeholder="Set a Title" onKeyUp={this.setTitle.bind(this)} />
+                    <button className="title-bar__export-button"> Export </button>
+                </div>
 
-       
                     <p className={"tip " + this.state.showTip}> Ready to Export? Just hit Enter three times! </p>
         
 

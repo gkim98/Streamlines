@@ -104,6 +104,7 @@ class HomePage extends React.Component {
 
     // Disable Scrolling until reenabled after animation in componentDidMount
     componentWillMount() {
+
         disableScroll();
     }
 
@@ -145,6 +146,7 @@ class HomePage extends React.Component {
         } else {
             // Show msg2
             enableScroll();
+
             setTimeout(function() {
                 this.child.animate(msg2, false);
             }.bind(this), 500);
