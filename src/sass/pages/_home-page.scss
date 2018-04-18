@@ -1,29 +1,4 @@
-.title {
-    top: 2%;
-    left: 2%;
-    color: white;
-    font-weight: 500;
-    font-size: 2.5rem;
-    
-    margin-top: 10px;
-    margin-left: 2%;
-    margin-bottom: 0;
 
-
-
-    &-sub {
-        color: lightgray;
-        font-weight: 500;
-        font-size: 1rem;
-        margin-bottom: 15px;
-        margin-left: 1%;
-        flex-grow: 1;
-        align-self: flex-end;
-        animation-delay: 0.2s;
-        
-    }
-
-}
 
 .learn {
     position: absolute;
@@ -127,3 +102,4 @@ i {
         }
     }
 }
+

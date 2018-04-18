@@ -17,19 +17,7 @@ html, body {margin: 0;  }
 
 }
 
-.flex-container {
-  display: flex;
-  //background-color:red;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  position: fixed;
-  left: 0;
-    top: 0;
-    width: 100%;
-  background-color: black;
-  z-index: 500;
-  //border-bottom: 1px solid white;
-}
+
 
 .title-field {
   position: absolute;
@@ -86,4 +74,16 @@ html, body {margin: 0;  }
    
   
   }
+}
+
+
+.tip {
+  color: gray;
+
+  display: absolute;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 1%;
+
 }

@@ -26,6 +26,19 @@
     }
 }
 
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        visibility: hidden;
+    }
+
+
+    100% {
+        opacity: 0;
+        visibility: visible;
+    }
+}
+
 @keyframes moveInTop {
     0% {
         opacity: 0;
@@ -183,7 +196,7 @@
 }
 
 .fadeOut {
-    animation: fadeOutBottom 1s;
-    animation-fill-mode: backwards;
+    animation: fadeOut 0.5s;
+    animation-fill-mode: forwards;
 }
 

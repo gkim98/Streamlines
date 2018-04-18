@@ -39,6 +39,17 @@ html, body {
   }
 }
 
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 0;
+    visibility: visible;
+  }
+}
+
 @keyframes moveInTop {
   0% {
     opacity: 0;
@@ -180,11 +191,11 @@ html, body {
 }
 
 .fadeOut {
-  animation: fadeOutBottom 1s;
-  animation-fill-mode: backwards;
+  animation: fadeOut 0.5s;
+  animation-fill-mode: forwards;
 }
 
-body {
+body, pre {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   line-height: 1.7;
@@ -1186,6 +1197,28 @@ body {
   padding: 1rem;
 }
 
+.writing-piece-button {
+  background-color: black;
+  color: white;
+  z-index: 100;
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1em;
+  font-weight: 700;
+  height: 10%;
+  padding: 10px 6rem;
+}
+
+.writing-piece-empty {
+  position: absolute;
+  font-size: 2.5rem;
+  left: 50%;
+  top: 30%;
+  transform: translateX(-50%);
+}
+
 .writing-piece-container {
   min-width: 30%;
   height: 80%;
@@ -1212,11 +1245,12 @@ body {
 }
 
 .writing-piece-text {
+  display: inline-block;
   flex-grow: 1;
   word-wrap: break-word;
-  width: 100%;
+  max-width: 100%;
+  white-space: pre-wrap;
   overflow: scroll;
-  white-space: pre-line;
 }
 
 .highlighted {
@@ -1238,28 +1272,6 @@ body {
   top: 20%;
   width: 100%;
   height: 80%;
-}
-
-.title {
-  top: 2%;
-  left: 2%;
-  color: white;
-  font-weight: 500;
-  font-size: 2.5rem;
-  margin-top: 10px;
-  margin-left: 2%;
-  margin-bottom: 0;
-}
-
-.title-sub {
-  color: lightgray;
-  font-weight: 500;
-  font-size: 1rem;
-  margin-bottom: 15px;
-  margin-left: 1%;
-  flex-grow: 1;
-  align-self: flex-end;
-  animation-delay: 0.2s;
 }
 
 .learn {
@@ -1368,18 +1380,6 @@ html, body {
   position: relative;
 }
 
-.flex-container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  background-color: black;
-  z-index: 500;
-}
-
 .title-field {
   position: absolute;
   bottom: 1.5%;
@@ -1422,5 +1422,14 @@ html, body {
 .text-flow__count:hover {
   background-color: white;
   color: black;
+}
+
+.tip {
+  color: gray;
+  display: absolute;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 1%;
 }
 /*# sourceMappingURL=main.css.map */

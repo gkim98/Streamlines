@@ -8,6 +8,7 @@ class HistoryPage extends React.Component {
 
         this.state = {
             copied: false,
+            exportEnabled: "",
         };
     }
 
@@ -32,13 +33,20 @@ class HistoryPage extends React.Component {
         });
     }
 
+    hideButtons() {
+        //console.log("test");
+        this.setState({
+            exportEnabled: "hidden",
+        });
+    }
+
     render() {
         return (
             <div>
                 this is the history page
-                <div className="flex-container">
-                    <div className={"title "}> Streamlines </div>
-                    <div className={"title-sub "}> No mistakes in creativity </div>
+                <div className="menu-bar">
+                    <div className={"menu-bar__title "}> Streamlines </div>
+                    <div className={"menu-bar__title-sub "}> No mistakes in creativity </div>
                     <div className="button-container">
                         <div>
                             <button className={"button button-info "}
@@ -54,10 +62,13 @@ class HistoryPage extends React.Component {
                     </div>
                 </div>
 
-                <WritingsList onRef={ref => (this.child = ref)} onSelect={this.selectedUpdate.bind(this)} />
+                <WritingsList 
+                    onRef={ref => (this.child = ref)} 
+                    onSelect={this.selectedUpdate.bind(this)}
+                    onEmpty={this.hideButtons.bind(this)} />
                 
 
-                <div className="button-flex">
+                <div className={"button-flex " + this.state.exportEnabled}>
                     <button className="button button-export"> Export to Google Drive </button>
                     <button className={"button button-copy " + this.getCopyClass()} onClick={this.copy.bind(this)}> 
                         {!this.state.copied ? (

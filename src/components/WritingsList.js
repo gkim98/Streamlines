@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { startAddWriting, startGetWritings} from '../actions/writings';
 import WritingPiece from './WritingPiece';
 import { startLogout } from '../actions/auth';
+import { withRouter } from "react-router-dom";
 
 function CopyToClipboard(containerid) {
     var range = document.createRange();
@@ -15,11 +16,16 @@ function CopyToClipboard(containerid) {
 class WritingsList extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
             highlighted: 0,
             oldHighlighted: 0,
         };
         this.addWriting = this.addWriting.bind(this);
+
+        
+
+    
     }
 
     handleScroll(event, delta) {
@@ -51,31 +57,60 @@ class WritingsList extends React.Component {
         }
 
     
-
+       
 
     }
 
     handleWheel(event) {
         //document.scrollingElement.scrollLeft -= event.wheelDelta / 2;
 
+        //console.log(document.querySelectorAll( ":hover" )[10].scrollHeight);
 
-        console.log(event.wheelDeltaY + " " + event.wheelDeltaX);
-        if( Math.abs(event.wheelDeltaY) > Math.abs(event.wheelDeltaX)) {
-            console.log("v");
-            document.scrollingElement.scrollLeft -= event.wheelDelta / 2;
+        console.log("YES");
+        
+        var scrollAble = false;
+
+        var preElement = document.querySelectorAll( ":hover" )[10];
+
+        if(preElement) 
+            scrollAble = preElement.scrollHeight > preElement.clientHeight;
+
+        if( Math.abs(event.wheelDeltaY) > Math.abs(event.wheelDeltaX) && !scrollAble) {
+            document.scrollingElement.scrollLeft -= event.wheelDelta / 4;
             event.preventDefault();
+        } else if(preElement){
+            //console.log(preElement.scrollHeight-preElement.clientHeight + " " + preElement.scrollTop);
+            if(preElement.scrollHeight-preElement.clientHeight === preElement.scrollTop) {
+                document.scrollingElement.scrollLeft -= event.wheelDelta / 4;
+
+            }
+
+            if(preElement.scrollTop === 0) {
+                document.scrollingElement.scrollLeft -= event.wheelDelta / 4;
+           
+            }
+           
         }
+        //}
             
     }
 
     componentDidMount() {
-        this.props.dispatch(startGetWritings());
+        
         window.addEventListener('scroll', this.handleScroll.bind(this));
         window.addEventListener('mousewheel', this.handleWheel.bind(this));
         this.props.onRef(this);
+
+        this.props.dispatch(startGetWritings());
+
+    
+
     }
 
     componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll.bind(this));
+        window.removeEventListener('mousewheel', this.handleWheel.bind(this));
+        
         this.props.onRef(undefined);
     }
 
@@ -91,32 +126,48 @@ class WritingsList extends React.Component {
 
     copyText() {
         //console.log(document.getElementById("text" + this.state.highlighted));
-        console.log(this.state.highlighted);
+        //console.log(this.state.highlighted);
         CopyToClipboard("text" + this.state.highlighted);
     }
 
     render() {
+        var isEmpty = this.props.writings.length === 0;
+        
+
         return (
             <div className="history-container">
-                {/* <input type='text' id='writing'></input>
-                <button onClick={this.addWriting}>Add Writing</button> */}
-                <div className="history-piece-container">
-                    <div className="writing-piece-container writing-piece-container-hidden" />
-                    
-                    {this.props.writings.map((writing, index) => {
-                        return (
-                            <WritingPiece 
-                                key={index} 
-                                text={writing.text} 
-                                highlighted={this.state.highlighted}
-                                id={index}
-                            />
-                        )
-                    })}
+                {!isEmpty ? (
+                    <div className="history-piece-container">
+                        <div className="writing-piece-container writing-piece-container-hidden" />
+                            
+                        {this.props.writings.map((writing, index) => {
+                            return (
+                                <WritingPiece 
+                                    key={index} 
+                                    text={writing.text} 
+                                    highlighted={this.state.highlighted}
+                                    id={index}
+                                />
+                            )
+                        })}
 
-                    <div className="writing-piece-container writing-piece-container-hidden" />
-                     
-                </div>
+                        <div className="writing-piece-container writing-piece-container-hidden" />
+                                    
+                    </div>
+                ) :
+
+                    <div> 
+                        <h1 className="writing-piece-empty"> No Streamlines yet </h1>
+                        <button 
+                            className="button writing-piece-button"
+                            onClick={() => {this.props.history.push("/write")} }> 
+                            Get started! 
+                        </button>
+                    </div>
+                
+                }
+                    
+       
 
                 
 
@@ -139,7 +190,8 @@ const WritingsListState = connect(mapStateToProps)(WritingsList);
 
 // attaches actions to component
 const mapDispatchToProps = (dispatch) => ({
-    startLogout: () => dispatch(startLogout())
+    startLogout: () => dispatch(startLogout()),
+
 });
 
-export default connect(undefined, mapDispatchToProps)(WritingsListState);
+export default connect(undefined, mapDispatchToProps)(withRouter(WritingsListState));

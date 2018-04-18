@@ -7,9 +7,7 @@ function countWords(str) {
     return str.trim().split(/\s+/).length;
   }
 
-  window.onbeforeunload = function() {
-    return "Data will be lost if you leave the page, are you sure?";
-  };
+  
 
 
 class WritePage extends Component {
@@ -25,6 +23,7 @@ class WritePage extends Component {
                     count1ToggleClass: "",
                     count2ToggleClass: "text-flow__count__hidden",
                     blankEnterCount: 0,
+                    showTip: "",
         };
         this.addWriting = this.addWriting.bind(this);
     }
@@ -110,7 +109,19 @@ class WritePage extends Component {
         }
     }
 
-    
+    hideTip() {
+        if(this.state.showTip==="") {
+            setTimeout(function() {
+                this.setState({
+                    showTip: "fadeOut",
+                });
+            }.bind(this),2000);
+                
+        }
+            
+        
+        
+    }
 
     render() {
         return (
@@ -119,10 +130,15 @@ class WritePage extends Component {
                 <TextFlow 
                     onTextChange={this.updateText.bind(this)}
                     onEnter={this.newParagraph.bind(this)}
-                    onRef={ref => (this.child = ref)} />
+                    onRef={ref => (this.child = ref)} 
+                    onBegin={this.hideTip.bind(this)} />
                 <div className="filter"></div> 
 
                 <input className="title-field" placeholder="Set a Title" onKeyUp={this.setTitle.bind(this)} />
+
+       
+                    <p className={"tip " + this.state.showTip}> Ready to Export? Just hit Enter three times! </p>
+        
 
                 <p id="count1" className={"text-flow__count " + this.state.count1ToggleClass} onClick={this.onToggleCount.bind(this)} > 
                     Sentence {this.state.sentenceNumber}: Paragraph {this.state.paragraphNumber}&nbsp; &#8594;

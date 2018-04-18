@@ -144,6 +144,7 @@ class HomePage extends React.Component {
             }.bind(this), 50*msg1.length + 1800 + 50*msg2.length);
         } else {
             // Show msg2
+            enableScroll();
             setTimeout(function() {
                 this.child.animate(msg2, false);
             }.bind(this), 500);
@@ -157,7 +158,7 @@ class HomePage extends React.Component {
                     titleFadeIn: "fadeIn-delay0"
                 });
                 
-                enableScroll();
+                
 
                 this.child.userInput(true);
             }.bind(this), 50*msg2.length - 1000);
@@ -172,6 +173,8 @@ class HomePage extends React.Component {
             learnFadeIn: "hidden",
             arrowFadeIn: "hidden"
         });
+
+        this.child.newLine();
 
         setTimeout(function() {
             this.props.history.push('/write')
