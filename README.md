@@ -4,6 +4,5 @@ Streamlines is a text editor that takes away the distractions. It is simply a bl
 
 ## Experience
 Experience is the focus of Streamlines. See for yourself:
-![](pics/demo.gif)
-
+[![](http://img.youtube.com/vi/V0CtNsaUUaE/0.jpg)](http://www.youtube.com/watch?v=V0CtNsaUUaE)
 
