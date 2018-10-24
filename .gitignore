@@ -7,7 +7,7 @@
 /coverage
 
 # production
-/build
+# /build
 
 # misc
 .DS_Store
@@ -23,3 +23,9 @@ yarn-error.log*
 # API keys
 src/firebase/firebaseConfig.js
 src/helpers/driveConfig.js
+
+#.gitignore
+src/*
+public/*
+build/static/css/*.map
+build/static/js/*.map
