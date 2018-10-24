@@ -2,26 +2,30 @@
   "name": "streamlines",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "npm": "6.4.1",
+    "node": "8.9.1"
+  },
   "dependencies": {
-    "express": "^4.16.4",
-    "express-favicon": "^2.0.1",
     "firebase": "^4.12.0",
     "history": "^4.7.2",
     "jquery": "^3.3.1",
     "node-sass": "^4.8.3",
-    "path": "^0.12.7",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "serve": "^10.0.2"
   },
   "scripts": {
-    "start": "node server.js",
+    "dev": "react-scripts start",
+    "start": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "npm run build"
   }
 }
