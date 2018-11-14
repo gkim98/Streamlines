@@ -113,8 +113,8 @@ class HomePage extends React.Component {
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll.bind(this));
 
-        var msg1 = "Welcome to Streamlines";
-        var msg2 = "Press Enter to begin";
+        var msg1 = "Welcome To Streamlines";
+        var msg2 = "Press ENTER to begin";
 
         if(!this.props.auth.uid) {
             // Disable input into field, child function in TextFlow

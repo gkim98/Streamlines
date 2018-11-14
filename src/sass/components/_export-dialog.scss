@@ -1,0 +1,45 @@
+
+$_SIDE_MARGIN: 2rem;
+
+.export-dialog {
+    &__main {
+        display: flex;
+        flex-flow: column;
+
+        position: absolute;
+        height: 70vh;
+        width: 60vw;
+        background-color: #191919F2;
+        z-index: 3;
+        top: 15vh;
+        left: 20vw;  
+    }
+
+    &__title {
+        color: white;
+        font-size: 2rem;
+        font-weight: 500;
+        margin-top: 3rem;
+        margin-left: $_SIDE_MARGIN;
+    }
+
+    &__grid {
+        flex-grow : 1;
+
+        margin-left: $_SIDE_MARGIN;
+        margin-right: $_SIDE_MARGIN;
+        display: grid;
+        grid-template-rows: 50% 50%;
+        grid-template-columns: 50% 50%;
+        justify-items: center;
+
+   
+    }
+
+    &__cell3 {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 3;
+    }
+}

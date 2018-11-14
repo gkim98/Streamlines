@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TextFlow from './TextFlow';
 import { startAddWriting} from '../actions/writings';
 import { connect } from 'react-redux';
+import ExportDialog from './ExportDialog';
 
 function countWords(str) {
     return str.trim().split(/\s+/).length;
@@ -131,6 +132,7 @@ class WritePage extends Component {
     render() {
         return (
             <div className="main-container overflow" onClick={this.handleClick.bind(this)}>
+                <ExportDialog />
                 
                 <TextFlow 
                     onTextChange={this.updateText.bind(this)}
